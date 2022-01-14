@@ -35,7 +35,7 @@ CREATE TABLE `users` (
   `email` varchar(60) NOT NULL COMMENT 'e-mail пользователя',
   `role` smallint(5) NOT NULL COMMENT 'роль: 0-админ, 1-обычный юзер',
   `last_action` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Дамп данных таблицы `users`

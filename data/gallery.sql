@@ -36,7 +36,7 @@ CREATE TABLE `gallery` (
   `description` varchar(1024) DEFAULT NULL COMMENT 'Описание товара',
   `views` smallint(5) DEFAULT NULL COMMENT 'Количество просмотров',
   `price` decimal(5,2) UNSIGNED NOT NULL COMMENT 'Цена товара'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Дамп данных таблицы `gallery`

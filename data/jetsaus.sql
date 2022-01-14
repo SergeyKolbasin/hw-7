@@ -15,7 +15,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8mb4*/;
 
 --
 -- База данных: `jetsaus`
@@ -33,7 +33,7 @@ CREATE TABLE `cart` (
   `id_user` smallint(5) NOT NULL COMMENT 'id пользователя',
   `quantity` smallint(5) NOT NULL COMMENT 'количество товара',
   `last_action` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Корзина покупателя';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Корзина покупателя';
 
 -- --------------------------------------------------------
 
@@ -50,7 +50,7 @@ CREATE TABLE `gallery` (
   `description` varchar(1024) DEFAULT NULL COMMENT 'Описание товара',
   `views` smallint(5) DEFAULT NULL COMMENT 'Количество просмотров',
   `price` decimal(5,2) UNSIGNED NOT NULL COMMENT 'Цена товара'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Дамп данных таблицы `gallery`
@@ -106,7 +106,7 @@ CREATE TABLE `gallery_news` (
   `title` varchar(255) NOT NULL,
   `content` text DEFAULT NULL,
   `date` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Дамп данных таблицы `gallery_news`
@@ -128,7 +128,7 @@ CREATE TABLE `gallery_reviews` (
   `date` timestamp NOT NULL DEFAULT current_timestamp(),
   `author` varchar(255) NOT NULL,
   `text` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Дамп данных таблицы `gallery_reviews`
@@ -155,7 +155,7 @@ CREATE TABLE `users` (
   `email` varchar(60) NOT NULL COMMENT 'e-mail пользователя',
   `role` smallint(5) NOT NULL COMMENT 'роль: 0-админ, 1-обычный юзер',
   `last_action` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Дамп данных таблицы `users`

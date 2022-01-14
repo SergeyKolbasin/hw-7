@@ -33,7 +33,7 @@ CREATE TABLE `cart` (
   `id_user` smallint(5) NOT NULL COMMENT 'id пользователя',
   `quantity` smallint(5) NOT NULL COMMENT 'количество товара',
   `last_action` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Корзина покупателя';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Корзина покупателя';
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
