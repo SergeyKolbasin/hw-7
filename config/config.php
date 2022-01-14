@@ -1,12 +1,5 @@
 <?php
-    // Константы калькулятора
-    define('MATH_OPERATION', [
-        '+',
-        '-',
-        '*',
-        '/'
-    ]);
-    
+
     // Каталоги сайта
     define('SITE_DIR', __DIR__ . '/../');               // Выход на один уровень вверх в структуре каталогов сайта
     define('CONFIG_DIR', SITE_DIR . 'config/');         // Конфигурация
@@ -28,7 +21,6 @@
     define('TABLE_PRODUCT', 'gallery');                 // Имя таблицы с товарами
     define('MAX_FILE_SIZE', 30000000);                  // Максималный размер загружаемого файла
 
-    require_once ENGINE_DIR . 'calc_functions.php';     // Функции калькуляторов
     require_once ENGINE_DIR . 'functions.php';          // Общепользовательские функции
     require_once ENGINE_DIR . 'db.php';                 // Функции работы с БД
     require_once ENGINE_DIR . 'gallery.php';            // Функции работы с галереей
