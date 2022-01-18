@@ -20,15 +20,16 @@
         echo 'Форма не заполнена';
     }
     echo '<hr>';
-    
+    // Отображение меню
+    echo render(TEMPLATES_DIR . 'menu.tpl', []);
     // Заголовок отзывов
-    echo  render(TEMPLATES_DIR . 'reviews.tpl', [
-        'title'     =>  'Отзывы',
-        'h3'        =>  'Отзывы',
-        'content'   =>  'На этой странице публикуются отзывы о нашем зоопарке:',
-    ]);
-    // Отзывы
-    echo renderReviews($reviews);
+        echo  render(TEMPLATES_DIR . 'reviews.tpl', [
+            'title'     =>  'Отзывы',
+            'h3'        =>  'Отзывы',
+            'content'   =>  'На этой странице публикуются отзывы о нашем зоопарке:',
+        ]);
+        // Отзывы
+        echo renderReviews($reviews);
 ?>
 <!-- Форма ввода отзыва -->
 <h4>Добавьте ваш отзыв:</h4>

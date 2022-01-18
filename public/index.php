@@ -1,5 +1,7 @@
 <?php
 require_once '../config/config.php';
+// Отображение меню
+echo render(TEMPLATES_DIR . 'menu.tpl', []);
 // Отображение главной страницы сайта
 echo render(TEMPLATES_DIR . '/index.tpl', [
         'title'     => 'Фото-зоопарк',
