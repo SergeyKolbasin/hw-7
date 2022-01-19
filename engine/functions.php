@@ -6,7 +6,7 @@ require_once '../config/config.php';
  * @param   array     $variables    Массив переменных, переданных в шаблон
  * @return  string                  HTML документ
  */
-function render($file, $variables = [])
+function render($file = '', $variables = [])
 {
 	if (!is_file($file)) {
 		echo 'Файл шаблона "' . $file . '" не найден';
@@ -38,7 +38,15 @@ function render($file, $variables = [])
  * @param   string      $fileName       имя файла
  * @return  string                      расширение файла с точкой
  */
-function getExtension($fileName): string
+function getExtension($fileName = ''): string
 {
     return substr($fileName, strrpos($fileName, '.'));
+}
+
+/** Функция вывода отображения меню сайта
+ */
+function mainMenu()
+{
+    //главное меню
+    echo render(TEMPLATES_DIR . 'menu.tpl', []);
 }

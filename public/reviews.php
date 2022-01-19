@@ -21,7 +21,7 @@
     }
     echo '<hr>';
     // Отображение меню
-    echo render(TEMPLATES_DIR . 'menu.tpl', []);
+    mainMenu();
     // Заголовок отзывов
         echo  render(TEMPLATES_DIR . 'reviews.tpl', [
             'title'     =>  'Отзывы',

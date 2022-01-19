@@ -4,7 +4,7 @@
  */
 require_once '../config/config.php';
 // Отображение меню
-echo render(TEMPLATES_DIR . 'menu.tpl', []);
+mainMenu();
 // Отображение новостей
 $news = getNews();
 $content = renderNews($news);
