@@ -18,9 +18,8 @@ if ($login && $password) {
     // Если пользователь найден, записываем его в сессию
     if ($user) {
         $_SESSION['login'] = $user;
-        echo 'Удачный вход';
+        header('location: /index.php'); // возврат в корень сайта
     } else {
         echo 'Неверная пара логин и пароль!';
     }
 }
-var_dump($_SESSION);
