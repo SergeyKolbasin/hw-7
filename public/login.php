@@ -1,9 +1,24 @@
+<html lang="ru">
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Вход в систему</title>
+</head>
+<body>
+<h3>Вход в систему</h3>
+<hr>
+<form method="post" action="login.php">
+    <p>Пользователь:<input type="text" name="login"></p>
+    <p>Пароль:<input type="password" name="password"></p>
+    <p><input type="submit" value="Войти"></p>
+</form>
+</body>
+</html>
 <?php
 /*
  * Вход в систему
  */
 require_once '../config/config.php';
-
 // Получаем логин, пароль
 $login = $_POST['login'] ?? false;
 $password = $_POST['password'] ?? false;
@@ -23,3 +38,4 @@ if ($login && $password) {
         echo 'Неверная пара логин и пароль!';
     }
 }
+?>

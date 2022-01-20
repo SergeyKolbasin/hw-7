@@ -49,7 +49,7 @@ function mainMenu()
 {
     // показать в меню вход или выход
     if (!isset($_SESSION['login'])) {
-        echo '<ul><li><a href="../login.html">Войти</a></li></ul>';
+        echo '<ul><li><a href="../login.php">Войти</a></li></ul>';
     } else {
         echo 'Вы вошли как <i>' . $_SESSION['login']['login'] . '</i>';
         echo '<ul><li><a href="../logout.php">Выйти</a></li></ul>';
