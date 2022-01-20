@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Янв 14 2022 г., 10:06
+-- Время создания: Янв 20 2022 г., 14:54
 -- Версия сервера: 10.4.22-MariaDB
 -- Версия PHP: 8.1.1
 
@@ -48,7 +48,8 @@ INSERT INTO `users` (`id`, `login`, `password`, `description`, `email`, `role`, 
 (4, 'petrov', 'f396c3b74762b1fee69b10abb875139b', 'Петров Петр Петрович', 'petrov@hw.loc', 1, '2022-01-14 09:05:04'),
 (5, 'sidorov', '9cd3acb851a21717cc51c213015eb7a7', 'Сидоров Сидор Сидорович', 'sidorov@hw.loc', 1, '2022-01-14 09:05:04'),
 (6, 'dmitriev', '5f4f54cb01219ba0cc3cfe3cff8d59d3', 'Дмитриев Дмитрий Дмитриевич', 'dmitriev@hw.loc', 1, '2022-01-14 09:05:04'),
-(7, 'jetsaus', '7721ddbf64f1c94315ab3982fca49839', 'Колбасин Сергей Петрович', 'jetsaus@hw.loc', 0, '2022-01-14 09:05:04');
+(7, 'jetsaus', '7721ddbf64f1c94315ab3982fca49839', 'Колбасин Сергей Петрович', 'jetsaus@hw.loc', 0, '2022-01-14 09:05:04'),
+(8, 'q', '7694f4a66316e53c8cdd9d9954bd611d', 'Тестовый пользователь', '', 0, '2022-01-20 13:54:08');
 
 --
 -- Индексы сохранённых таблиц
@@ -68,7 +69,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` smallint(5) NOT NULL AUTO_INCREMENT COMMENT 'id пользователя', AUTO_INCREMENT=8;
+  MODIFY `id` smallint(5) NOT NULL AUTO_INCREMENT COMMENT 'id пользователя', AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

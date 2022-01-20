@@ -49,9 +49,11 @@ function mainMenu()
 {
     // показать в меню вход или выход
     if (!isset($_SESSION['login'])) {
+        //echo '<ul><li><a href="' . WWW_DIR . 'login.php">Войти</a></li></ul>';
         echo '<ul><li><a href="../login.php">Войти</a></li></ul>';
     } else {
-        echo 'Вы вошли как <i>' . $_SESSION['login']['login'] . '</i>';
+        echo 'Вы вошли как <i>' . $_SESSION['login']['description'] . '</i>';
+        //echo '<ul><li><a href="' . WWW_DIR . 'logout.php">Выйти</a></li></ul>';
         echo '<ul><li><a href="../logout.php">Выйти</a></li></ul>';
     }
     // главное меню
