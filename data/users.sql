@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `users` (
   `id` smallint(5) NOT NULL COMMENT 'id пользователя',
-  `name` varchar(50) NOT NULL COMMENT 'имя пользователя в системе',
+  `login` varchar(50) NOT NULL COMMENT 'имя пользователя в системе',
   `password` varchar(60) NOT NULL COMMENT 'пароль',
   `description` varchar(255) NOT NULL COMMENT 'описание (полное имя)',
   `email` varchar(60) NOT NULL COMMENT 'e-mail пользователя',
@@ -41,7 +41,7 @@ CREATE TABLE `users` (
 -- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `password`, `description`, `email`, `role`, `last_action`) VALUES
+INSERT INTO `users` (`id`, `login`, `password`, `description`, `email`, `role`, `last_action`) VALUES
 (1, 'admin', '97ea61ac69fd51713500f4b05ec854cd', 'Администратор системы', 'admin@hw.loc', 0, '2022-01-14 09:05:04'),
 (2, 'user', '3fc0a7acf087f549ac2b266baf94b8b1', 'Покупатель', 'customer@hw.loc', 1, '2022-01-14 09:05:04'),
 (3, 'ivanov', '4dfe6e220d16e7b633cfdd92bcc8050b', 'Иванов Иван Иванович', 'ivanov@hw.loc', 1, '2022-01-14 09:05:04'),

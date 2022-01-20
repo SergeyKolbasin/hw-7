@@ -55,5 +55,5 @@ function mainMenu()
         echo '<ul><li><a href="../logout.php">Выйти</a></li></ul>';
     }
     // главное меню
-    echo render(TEMPLATES_DIR . 'menu.tpl', []);
+    echo render(TEMPLATES_DIR . 'mainMenu.tpl', []);
 }
