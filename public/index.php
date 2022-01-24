@@ -1,5 +1,7 @@
 <?php
 require_once '../config/config.php';
+$_SESSION['originalURL'] = $_SERVER['REQUEST_URI']; // сохранения для возврата на эту же страницу
+
 // Отображение меню
 mainMenu();
 // Отображение главной страницы сайта

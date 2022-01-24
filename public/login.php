@@ -33,7 +33,7 @@ if ($login && $password) {
     // Если пользователь найден, записываем его в сессию
     if ($user) {
         $_SESSION['login'] = $user;
-        header('location: /index.php'); // возврат в корень сайта
+        header('location: ' . $_SESSION['originalURL']); // возврат на прежнее место сайта
     } else {
         echo 'Неверная пара логин и пароль!';
     }

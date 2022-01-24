@@ -3,6 +3,8 @@
      * Отображение страницы отзывов
      */
     require_once '../config/config.php';
+    $_SESSION['originalURL'] = $_SERVER['REQUEST_URI']; // сохранения для возврата на эту же страницу
+
     $reviews = getReviews();
     
     // Добавляем в базу новый отзыв
