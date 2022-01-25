@@ -8,8 +8,8 @@
 <h3>Вход в систему</h3>
 <hr>
 <form method="post" action="login.php">
-    <p>Пользователь:<input type="text" name="login"></p>
-    <p>Пароль:<input type="password" name="password"></p>
+    <p><label>Пользователь:  <input type="text" name="login"></label></p>
+    <p><label>Пароль: <input type="password" name="password"></label></p>
     <p><input type="submit" value="Войти"></p>
 </form>
 </body>
@@ -33,7 +33,11 @@ if ($login && $password) {
     // Если пользователь найден, записываем его в сессию
     if ($user) {
         $_SESSION['login'] = $user;
-        header('location: ' . $_SESSION['originalURL']); // возврат на прежнее место сайта
+        if (isset($_SESSION['login'])) {
+            header('location: ' . $_SESSION['originalURL']); // возврат на прежнее место сайта
+        }else{
+            header('location: "index.php"');                 // возврат на стартовую страницу
+        }
     } else {
         echo 'Неверная пара логин и пароль!';
     }
