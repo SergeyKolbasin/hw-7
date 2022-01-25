@@ -3,6 +3,7 @@
  * Добавление нового товара
  */
 require_once '../config/config.php';
+
 $name = $_POST['name'] ?? '';                           // наименование товара
 $description = $_POST['description'] ?? '';             // описание товара
 $price = $_POST['price'] ?? '';                        // цена товара

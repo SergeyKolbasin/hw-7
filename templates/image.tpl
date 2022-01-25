@@ -21,7 +21,7 @@
             <span>{{DESCRIPTION}}</span>
         </div>
         <p>Просмотров: {{VIEWS}}</p>
-        <a href="/gallery.php"><< Назад</a>
+        <a href="/gallery.php"><< В зоопарк</a>
         <br>
         <a href="/index.php">На главную</a>
     </div>

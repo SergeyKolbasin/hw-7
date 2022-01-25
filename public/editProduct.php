@@ -81,6 +81,6 @@ echo '<hr>';
     <input type="submit" value="Отправить">
 </form>
 <!-- Возврат из формы редактирования -->
-<a href="/gallery.php"><< Назад</a><br>
+<a href="/gallery.php"><< В зоопарк</a><br>
 <a href="index.php">На главную</a>
 </body>

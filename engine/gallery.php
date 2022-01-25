@@ -71,6 +71,9 @@ function getImage($id)
  */
 function showImage($id)
 {
+    $_SESSION['originalURL'] = $_SERVER['REQUEST_URI']; // сохранения для возврата на эту же страницу
+    mainMenu();
+
     $id = (int)$id;                                             // Преобразуем id в число
     $image = getImage($id);                                     // Получаем информацию о фото
     if (empty($image)) {                                        // Если информация о фото отсутствует в базе
@@ -83,7 +86,7 @@ function showImage($id)
     }
     $image['views']++;                                      // Увеличиваем количество просмотров на 1
     updateViews($id, $image['views']);                      // Запишем их в БД
-    return render(TEMPLATES_DIR . 'product.tpl', $image);     // Возвращаем HTML-код отображения страницы с фото
+    return render(TEMPLATES_DIR . 'product.tpl', $image);   // Возвращаем HTML-код отображения страницы с фото
 }
 
 
@@ -168,35 +171,34 @@ function getProductName(): string
  * @param   integer   $id       Идентификатор отзыва
  * @return  boolean             Результат удаления
  */
-function deleteProduct($id) {
+function deleteProduct($id): bool
+{
     $db = createConnection();
     $id = (int)$id;
     $sql = "DELETE FROM `gallery` WHERE `id`=$id";
     return execQuery($sql, $db);
 }
 
-
-
-/** Функция возвращает HTML-код отображения страницы фото из БД по его id
- *
- * @param   integer     $id     Идентификатор отображаемой фотографии
- * @return  array               HTML-код отображения страницы с фото
+/** Функция вывода отображения меню сайта
  */
-/*
-function editImage($id)
+function mainMenu()
 {
-    $id = (int)$id;                                             // Преобразуем id в число
-    $image = getImage($id);                                     // Получаем информацию о фото
-    if (empty($image)) {                                        // Если информация о фото отсутствует в базе
-        echo "Ошибка 404, фотографии с id=$id нет в базе!";             // Выводим сообщение об ошибке
-        die;
+    // показать в меню вход или выход
+    if (!isset($_SESSION['login'])) {
+        echo '<ul><li><a href="login.php">Войти</a></li></ul>';
+    } else {
+        echo 'Вы вошли как <i>' . $_SESSION['login']['description'] . '</i>';
+        echo '<ul><li><a href="logout.php">Выйти</a></li></ul>';
     }
-    if (!file_exists($image['url'])) {                                     // Если запрашиваемый файл отсутствует
-        echo 'Ошибка 404, файл "' . $image['url'] . '" отсутствует!';      // Выводим сообщение об ошибке
-        die;
-    }
-    //$image['views']++;                                      // Увеличиваем количество просмотров на 1
-    //updateViews($id, $image['views']);                      // Запишем их в БД
-    return render(TEMPLATES_DIR . 'product.tpl', $image);     // Возвращаем HTML-код отображения страницы с фото
+    // главное меню
+    echo render(TEMPLATES_DIR . 'mainMenu.tpl', []);
 }
-*/
+
+/** Добавление товара в корзину
+ * @param   integer   $id       Идентификатор товара
+ * @return  boolean             Результат удаления
+ */
+function insertProductBasket($id)
+{
+    echo "Продукт с id=$id добавлен в корзину";
+}

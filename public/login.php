@@ -36,7 +36,7 @@ if ($login && $password) {
         if (isset($_SESSION['login'])) {
             header('location: ' . $_SESSION['originalURL']); // возврат на прежнее место сайта
         }else{
-            header('location: "index.php"');                 // возврат на стартовую страницу
+            header('location: index.php');                 // возврат на стартовую страницу
         }
     } else {
         echo 'Неверная пара логин и пароль!';

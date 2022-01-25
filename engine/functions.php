@@ -42,18 +42,3 @@ function getExtension($fileName = ''): string
 {
     return substr($fileName, strrpos($fileName, '.'));
 }
-
-/** Функция вывода отображения меню сайта
- */
-function mainMenu()
-{
-    // показать в меню вход или выход
-    if (!isset($_SESSION['login'])) {
-        echo '<ul><li><a href="login.php">Войти</a></li></ul>';
-    } else {
-        echo 'Вы вошли как <i>' . $_SESSION['login']['description'] . '</i>';
-        echo '<ul><li><a href="logout.php">Выйти</a></li></ul>';
-    }
-    // главное меню
-    echo render(TEMPLATES_DIR . 'mainMenu.tpl', []);
-}

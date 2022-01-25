@@ -13,10 +13,9 @@
 </head>
 <body>
     <header>
-        <ul>
-            <li><a href="editProduct.php?id={{ID}}">Редактировать</a></li>
-            <li><a href="deleteProduct.php?id={{ID}}">Удалить</a></li>
-        </ul>
+        <a href="editProduct.php?id={{ID}}">Редактировать</a>&nbsp
+        <a href="deleteProduct.php?id={{ID}}">Удалить</a>&nbsp
+        <a href="insertProductBasket.php?id={{ID}}">В корзину</a>
     </header>
     <h3>{{NAME}}</h3>
     <div class="container">
@@ -27,9 +26,6 @@
             <span>{{DESCRIPTION}}</span>
             <p>Просмотров: {{VIEWS}}</p>
             <p><b>Цена: {{PRICE}}</b></p>
-            <a href="/gallery.php"><< Назад</a>
-            <br>
-            <a href="/index.php">На главную</a>
         </div>
     </div>
     <br>
