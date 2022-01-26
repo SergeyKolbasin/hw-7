@@ -15,8 +15,6 @@ if (!$id) {
     exit();
 }
 $id = (int)$id;
-$product = getImage($id);
-$price = $product['price'];
 
 insertProductBasket($id);
 

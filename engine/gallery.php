@@ -200,5 +200,9 @@ function mainMenu()
  */
 function insertProductBasket($id)
 {
-    echo "Продукт с id=$id добавлен в корзину";
+    $product = getImage($id);
+    $price = $product['price'];
+
+    //echo '<script>alert("Продукт ' . $name . ' с id=' . $id . ' добавлен в корзину")</script>';
+    echo '<script>alert("Продукт ' . $product['name'] . ' с id=' . $id . ' добавлен в корзину")</script>';
 }
