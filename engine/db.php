@@ -26,13 +26,13 @@ function createConnection()
 }
 
 /** Выполнение SQL-запроса
- * Применяется только для модификации данных
+ * Применяется только для модификации данных !!!
  *
  * @param   string  $sql    SQL-запрос
  * @param   object  $db     Объект, представляющий связь с БД
- * @return  integer         Количество записей, затронутых SQL-запросом
+ * @return  bool            Результат функции mysqli_query()
  */
-function execQuery($sql, $db=null): int
+function execQuery($sql, $db=null)
 {
     if (!$db) {                             // Создание соединения, если его нет
         $db = createConnection();

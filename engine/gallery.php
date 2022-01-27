@@ -196,12 +196,26 @@ function mainMenu()
 
 /** Добавление товара в корзину
  * @param   integer   $id       Идентификатор товара
- * @return  boolean             Результат добавления
+ * @return  bool                Результат добавления
  */
 function insertProductBasket($id)
 {
-    $product = getImage($id);
-    $price = $product['price'];
-    echo '<b><i>Товар "' . $product['name'] . '" добавлен в корзину</i></b>';
-    echo '<hr>';
+    $isPresent = 0;
+    $userid = $_SESSION['login']['id'];     // идентификатор пользователя
+    $productid = $id;                       // идентификатор товара
+    $db = createConnection();
+    // Проверка наличия такого товара у такого юзера в корзине
+    $sql = "SELECT * FROM `baskets` WHERE `userid`=$userid AND `productid`=$productid";
+    if (getSingle($sql)!=NULL) {      // у пользователя уже есть такой товар в корзине
+        $isPresent = 1;
+        return false;
+    } else {                            // такого товара нет, создание запроса на добавление в корзину
+        $sql = "INSERT INTO `baskets`(`userid`, `productid`, `amount`) VALUES ('$userid', '$productid', 1)";
+    }
+    // добавление в корзину
+    if (execQuery($sql)!=false) {
+        return true;
+    } else {
+        return false;
+    }
 }
