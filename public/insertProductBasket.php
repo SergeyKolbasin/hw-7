@@ -15,8 +15,10 @@ if (!$id) {
     exit();
 }
 $id = (int)$id;
-
 insertProductBasket($id);
+mainMenu();
+echo renderGallery(getImages('SELECT * FROM gallery ORDER BY `views` DESC'), COLUMNS);
+
 
 // Удаляем запись из БД и файл фотографии
 /*

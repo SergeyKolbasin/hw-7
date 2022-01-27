@@ -196,13 +196,12 @@ function mainMenu()
 
 /** Добавление товара в корзину
  * @param   integer   $id       Идентификатор товара
- * @return  boolean             Результат удаления
+ * @return  boolean             Результат добавления
  */
 function insertProductBasket($id)
 {
     $product = getImage($id);
     $price = $product['price'];
-
-    //echo '<script>alert("Продукт ' . $name . ' с id=' . $id . ' добавлен в корзину")</script>';
-    echo '<script>alert("Продукт ' . $product['name'] . ' с id=' . $id . ' добавлен в корзину")</script>';
+    echo '<b><i>Товар "' . $product['name'] . '" добавлен в корзину</i></b>';
+    echo '<hr>';
 }
