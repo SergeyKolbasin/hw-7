@@ -10,6 +10,7 @@ if (isset($_SESSION['originalURL'])) {
 }
 
 // Закрываем сессию, тем самым разлогиниваем пользователя
+
 echo 'До свидания, ' . $_SESSION['login']['login'];
 $_SESSION = [];
 unset($_COOKIE[session_name()]);

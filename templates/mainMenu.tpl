@@ -4,5 +4,5 @@
     <li><a href="/gallery.php">Товары</a></li>
     <li><a href="/reviews.php">Отзывы</a></li>
     <li><a href="/contacts.php">Контакты</a></li>
-    <li><a href="#">Корзина</a></li>
+    <li><a href="/basketProduct.php">Корзина</a></li>
 </ul>
