@@ -15,6 +15,8 @@ mainMenu();
 echo '<h3>Корзина покупок:</h3>';
 
 foreach($basket as $product) {
-    echo $product['name'] . '<br>';
+    echo $product['name'] . ' ' . $product['price'] . ' ' . $product['amount'] . ' ' . $product['price'] * $product['amount'];
+    echo 
+    echo '<br>';
 }
 //var_dump($basket);
