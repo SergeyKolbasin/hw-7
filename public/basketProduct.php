@@ -3,10 +3,10 @@ require_once '../config/config.php';
 // Если юзер вошел в систему
 if (isset($_SESSION['login'])) {
     $id = $_SESSION['login']['id'];
-    $sql = "SELECT gallery.id, gallery.name, gallery.price, baskets.amount FROM gallery
-                INNER JOIN baskets ON baskets.productid=gallery.id
-                    WHERE baskets.userid=$id
-                        ORDER BY gallery.name ASC";
+    $sql = "SELECT baskets.id, baskets.productid, gallery.name, gallery.price, baskets.amount FROM baskets
+                INNER JOIN gallery ON baskets.productid=gallery.id
+                WHERE baskets.userid=7                  -- это идентификатор пользователя, соответствующий полю users.id
+                ORDER BY baskets.id ASC";
     $basket = getAssocResult($sql);
 }else{
     header('location: login.php');
@@ -14,4 +14,7 @@ if (isset($_SESSION['login'])) {
 mainMenu();
 echo '<h3>Корзина покупок:</h3>';
 
-var_dump($basket);
+foreach($basket as $product) {
+    echo $product['name'] . '<br>';
+}
+//var_dump($basket);
