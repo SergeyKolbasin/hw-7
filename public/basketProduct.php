@@ -15,8 +15,11 @@ mainMenu();
 echo '<h3>Корзина покупок:</h3>';
 
 foreach($basket as $product) {
-    echo $product['name'] . ' ' . $product['price'] . ' ' . $product['amount'] . ' ' . $product['price'] * $product['amount'];
-    echo 
-    echo '<br>';
+    echo '<form>';
+        echo $product['name'] . ' ' . $product['price'] . ' ';
+        echo '<input type="number" min="0" max="99" step="1" value="' . $product['amount'] . '" style = "width: 40px;" required>';
+        echo ' ' . $product['price'] * $product['amount'];
+        echo '<br>';
+    echo '</form>';
 }
 //var_dump($basket);
