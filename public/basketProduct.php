@@ -13,10 +13,10 @@ if (isset($_SESSION['login'])) {
 }
 mainMenu();
 echo '<h3>Корзина покупок:</h3>';
-
 foreach($basket as $product) {
-    echo $product['name'] . ' ' . $product['price'] . ' ' . $product['amount'] . ' ' . $product['price'] * $product['amount'];
-    echo 
+    echo $product['name'] . ' ' . $product['price'] . ' ' . $product['amount'] . ' ';
+    echo '<a href="editBasketItem.php?id=' . $product['id'] . '">Изменить</a>';
+    echo $product['price'] * $product['amount'];
+    echo '<a href="deleteBasketItem.php?id=' . $product['id'] . '">Удалить</a>';
     echo '<br>';
 }
-//var_dump($basket);
