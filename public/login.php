@@ -12,6 +12,9 @@
     <p><label>Пароль: <input type="password" name="password"></label></p>
     <p><input type="submit" value="Войти"></p>
 </form>
+<a href="gallery.php"><< В зоопарк</a><br>
+<a href="index.php">На главную</a>
+<br><br>
 </body>
 </html>
 <?php
@@ -39,8 +42,8 @@ if ($login && $password) {
             header('location: index.php');                 // возврат на стартовую страницу
         }
     } else {
-        echo 'Неверная пара логин и пароль!';
+        echo 'Неверная пара логин/пароль!';
     }
 } else {
-    echo 'Не введены логин или пароль';
+    echo 'Не введены логин и/или пароль!';
 }

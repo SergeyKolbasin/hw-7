@@ -1,11 +1,11 @@
 <?php
 require_once '../config/config.php';
 // Если юзер вошел в систему
-if (isset($_SESSION['login'])) {
+if (!empty($_SESSION['login'])) {
     $id = $_SESSION['login']['id'];
     $sql = "SELECT baskets.id, baskets.productid, gallery.name, gallery.price, baskets.amount FROM baskets
                 INNER JOIN gallery ON baskets.productid=gallery.id
-                WHERE baskets.userid=7                  -- это идентификатор пользователя, соответствующий полю users.id
+                WHERE baskets.userid=$id                  -- это идентификатор пользователя, соответствующий полю users.id
                 ORDER BY baskets.id ASC";
     $basket = getAssocResult($sql);
 }else{

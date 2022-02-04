@@ -4,7 +4,7 @@
  */
 require_once '../config/config.php';
 // Если нет авторизации, перенаправление на логин
-if (!isset($_SESSION['login'])) {
+if (empty($_SESSION['login'])) {
     header('location: login.php');
 }
 // Контроль id товара

@@ -184,7 +184,7 @@ function deleteProduct($id): bool
 function mainMenu()
 {
     // показать в меню вход или выход
-    if (!isset($_SESSION['login'])) {
+    if (empty($_SESSION['login'])) {
         echo '<ul><li><a href="login.php">Войти</a></li></ul>';
     } else {
         echo 'Вы вошли как <i>' . $_SESSION['login']['description'] . '</i>';
