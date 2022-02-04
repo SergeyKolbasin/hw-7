@@ -67,7 +67,7 @@ function getImage($id)
 /** Функция возвращает HTML-код отображения страницы фото из БД по его id
  *
  * @param   integer     $id     Идентификатор отображаемой фотографии
- * @return  array               HTML-код отображения страницы с фото
+ * @return  string               HTML-код отображения страницы с фото
  */
 function showImage($id)
 {
@@ -218,4 +218,16 @@ function insertProductBasket($id)
     } else {
         return false;
     }
+}
+
+/** Удаление товара из корзины
+ * @param   integer   $id       Идентификатор отзыва
+ * @return  boolean             Результат удаления
+ */
+function deleteBasketItem($id): bool
+{
+    $db = createConnection();
+    $id = (int)$id;
+    $sql = "DELETE FROM `baskets` WHERE `id`=$id";
+    return execQuery($sql, $db);
 }

@@ -17,6 +17,6 @@ foreach($basket as $product) {
     echo $product['name'] . ' ' . $product['price'] . ' ' . $product['amount'] . ' ';
     echo '<a href="editBasketItem.php?id=' . $product['id'] . '">Изменить</a>';
     echo $product['price'] * $product['amount'];
-    echo '<a href="deleteBasketItem.php?id=' . $product['id'] . '">Удалить</a>';
+    echo '<a href="deleteBasketItem.php?id=' . $product['id'] . '&productid=' . $product['productid'] . '">Удалить</a>';
     echo '<br>';
 }
