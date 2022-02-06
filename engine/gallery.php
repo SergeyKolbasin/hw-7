@@ -221,7 +221,7 @@ function insertProductBasket($id)
 }
 
 /** Удаление товара из корзины
- * @param   integer   $id       Идентификатор отзыва
+ * @param   integer   $id       Идентификатор определенного товара в корзине
  * @return  boolean             Результат удаления
  */
 function deleteBasketItem($id): bool
@@ -230,4 +230,18 @@ function deleteBasketItem($id): bool
     $id = (int)$id;
     $sql = "DELETE FROM `baskets` WHERE `id`=$id";
     return execQuery($sql, $db);
+}
+
+/** Получение выборки по определенному товару из корзины
+ * @param   integer     $id         Идентификатор товара в корзине
+ * @param   integer     $amount     Количество товара
+ * @return  array           Результат выборки или NULL
+ */
+function getBasketItem($id)
+{
+    $db = createConnection();
+    $id = (int)$id;
+    $sql = "SELECT baskets.id, baskets.productid, gallery.name, gallery.url, gallery.price, baskets.amount FROM baskets
+                INNER JOIN gallery ON (baskets.productid=gallery.id) AND (baskets.id=$id)";
+    return getSingle($sql);
 }

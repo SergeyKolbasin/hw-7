@@ -9,13 +9,18 @@ if (!$id) {
     exit();
 }
 echo "Я в модуле с id=$id";
-/*
+
 $id = (int)$id;
-$product = getImage($id);
+
+$product = getBasketItem($id);
+
 $name = $product['name'];
 $url = $product['url'];
 $price = $product['price'];
+$amount = $product['amount'];
 
+var_dump($product);
+/*
 // Удаляем запись из БД и файл фотографии
 if (deleteProduct($id) && unlink($url)) {
     echo 'Удален товар: ';
@@ -23,9 +28,10 @@ if (deleteProduct($id) && unlink($url)) {
 } else {
     echo 'Произошла ошибка';
 }
-?>
-<!-- Возврат из формы удаления -->
-<br><br>
-<a href="gallery.php"><< В зоопарк</a><br>
-<a href="index.php">На главную</a>
 */
+?>
+<!-- Возврат из формы редактирования -->
+<br><br>
+<a href="basketProduct.php"><< В корзину</a><br>
+<a href="gallery.php">В зоопарк</a><br>
+<a href="index.php">На главную</a>
