@@ -234,14 +234,18 @@ function deleteBasketItem($id): bool
 
 /** Получение выборки по определенному товару из корзины
  * @param   integer     $id         Идентификатор товара в корзине
+ * @param   integer     $userid     Идентификатор юзера
  * @param   integer     $amount     Количество товара
  * @return  array           Результат выборки или NULL
  */
-function getBasketItem($id)
+function getBasketItem($id, $userid)
 {
     $db = createConnection();
     $id = (int)$id;
-    $sql = "SELECT baskets.id, baskets.productid, gallery.name, gallery.url, gallery.price, baskets.amount FROM baskets
-                INNER JOIN gallery ON (baskets.productid=gallery.id) AND (baskets.id=$id)";
+    // Выборка с именем юзера
+    $sql= "SELECT baskets.id, baskets.productid, gallery.name, gallery.url, gallery.price, baskets.amount, users.description
+	        FROM baskets
+    	        INNER JOIN users ON users.id=$userid
+    	        INNER JOIN gallery ON (baskets.productid=gallery.id) AND (baskets.id=$id)";
     return getSingle($sql);
 }

@@ -8,16 +8,15 @@ if (!$id) {
     echo 'id не передан';
     exit();
 }
-echo "Я в модуле с id=$id";
-
 $id = (int)$id;
-
-$product = getBasketItem($id);
-
+$userid = $_SESSION['login']['id'];
+$product = getBasketItem($id, $userid);
+$user = $product['description'];
 $name = $product['name'];
 $url = $product['url'];
 $price = $product['price'];
 $amount = $product['amount'];
+echo "Редактируем товар <i>$name</i> в корзине пользователя <i>$user</i>";
 
 var_dump($product);
 /*
