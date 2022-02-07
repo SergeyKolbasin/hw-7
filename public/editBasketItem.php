@@ -16,9 +16,8 @@ $name = $product['name'];
 $url = $product['url'];
 $price = $product['price'];
 $amount = $product['amount'];
-echo "Редактируем товар <i>$name</i> в корзине пользователя <i>$user</i>";
 
-var_dump($product);
+//var_dump($product);
 /*
 // Удаляем запись из БД и файл фотографии
 if (deleteProduct($id) && unlink($url)) {
@@ -29,8 +28,42 @@ if (deleteProduct($id) && unlink($url)) {
 }
 */
 ?>
+<! DOCTYPE html>
+<html lang="ru">
+<head>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+<p>Редактируем количество товара <i><?= $name ?></i> в корзине пользователя <i><?= $user ?></i></p>
+<hr>
+<table>
+    <tr>
+        <th>Вид</th>
+        <th>Наименование</th>
+        <th>Цена</th>
+        <th>Количество</th>
+    </tr>
+    <tr>
+        <td><img width="100px" src="<?= '../' . $url ?> " alt="<?= $name ?>"></td>
+        <td><?= $name ?></td>
+        <td><?= $price ?></td>
+        <td>
+            <?= $amount ?>
+        </td>
+    </tr>
+</table>
 <!-- Возврат из формы редактирования -->
 <br><br>
 <a href="basketProduct.php"><< В корзину</a><br>
 <a href="gallery.php">В зоопарк</a><br>
 <a href="index.php">На главную</a>
+</body>
+</html>
