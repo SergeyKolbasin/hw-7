@@ -14,8 +14,8 @@ $product = getBasketItem($id, $userid);
 $user = $product['description'];
 $name = $product['name'];
 $url = $product['url'];
-$price = $product['price'];
 $amount = $product['amount'];
+$price = $product['price'];
 
 if (!empty($_POST['amount']) && ($_POST['amount'] !== $amount)) {
     $amount = $_POST['amount'];
