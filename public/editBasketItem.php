@@ -63,7 +63,7 @@ if (!empty($_POST['amount']) && ($_POST['amount'] !== $amount)) {
 <br>
 <p>Количество товара "<?= $name ?>" составляет <?= $amount ?> шт. </p>
 <br>
-<a href="basketProduct.php"><< Назад в корзину</a><br>
+<a href="basketProduct.php"><< В корзину</a><br>
 <a href="gallery.php">В зоопарк</a><br>
 <a href="index.php">На главную</a>
 </body>

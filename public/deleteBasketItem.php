@@ -24,6 +24,6 @@ if (deleteBasketItem($id)) {
 ?>
 <!-- Возврат из формы удаления -->
 <br><br>
-<a href="basketProduct.php"><< Обратно в корзину</a><br>
+<a href="basketProduct.php"><< В корзину</a><br>
 <a href="gallery.php">В галерею</a><br>
 <a href="index.php">На главную</a>
