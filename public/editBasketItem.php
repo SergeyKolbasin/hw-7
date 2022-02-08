@@ -17,16 +17,10 @@ $url = $product['url'];
 $price = $product['price'];
 $amount = $product['amount'];
 
-//var_dump($product);
-/*
-// Удаляем запись из БД и файл фотографии
-if (deleteProduct($id) && unlink($url)) {
-    echo 'Удален товар: ';
-    echo '"<b>' . $name . '</b>, стоимостью: ' . $price . '"';
-} else {
-    echo 'Произошла ошибка';
+if (!empty($_POST['amount']) && ($_POST['amount'] !== $amount)) {
+    $amount = $_POST['amount'];
+    echo "Количество товара изменено $name";
 }
-*/
 ?>
 <! DOCTYPE html>
 <html lang="ru">
@@ -56,7 +50,10 @@ if (deleteProduct($id) && unlink($url)) {
         <td><?= $name ?></td>
         <td><?= $price ?></td>
         <td>
-            <?= $amount ?>
+            <form action="" method="post">
+             <input type="number" name="amount" value="<?= $amount ?>">
+             <input type="submit" name="send" value="ОК">
+            </form>
         </td>
     </tr>
 </table>
