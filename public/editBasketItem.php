@@ -8,18 +8,18 @@ if (!$id) {
     echo 'id не передан';
     exit();
 }
-$id = (int)$id;
-$userid = $_SESSION['login']['id'];
-$product = getBasketItem($id, $userid);
-$user = $product['description'];
-$name = $product['name'];
-$url = $product['url'];
-$amount = $product['amount'];
-$price = $product['price'];
-
+$id = (int)$id;                         // id записи в корзине
+$userid = $_SESSION['login']['id'];     // id юзера
+$product = getBasketItem($id, $userid); // содержимое выбранной позиции корзины данного юзера
+$user = $product['description'];        // описание юзера(полное ФИО)
+$name = $product['name'];               // наименование товара
+$url = $product['url'];                 // изображение товара
+$amount = $product['amount'];           // количество товара в корзине
+$price = $product['price'];             // цена единицы товара
+// Если кол-во не пусто и оно было изменено
 if (!empty($_POST['amount']) && ($_POST['amount'] !== $amount)) {
     $amount = $_POST['amount'];
-    echo "Количество товара изменено $name";
+    // Здесь добавить запись в БД корзины
 }
 ?>
 <! DOCTYPE html>
@@ -36,7 +36,7 @@ if (!empty($_POST['amount']) && ($_POST['amount'] !== $amount)) {
     </style>
 </head>
 <body>
-<p>Редактируем количество товара <i><?= $name ?></i> в корзине пользователя <i><?= $user ?></i></p>
+<p>Редактируем количество товара "<?= $name ?>"в корзине пользователя <i><?= $user ?></i></p>
 <hr>
 <table>
     <tr>
@@ -44,6 +44,7 @@ if (!empty($_POST['amount']) && ($_POST['amount'] !== $amount)) {
         <th>Наименование</th>
         <th>Цена</th>
         <th>Количество</th>
+        <th>Стоимость</th>
     </tr>
     <tr>
         <td><img width="100px" src="<?= '../' . $url ?> " alt="<?= $name ?>"></td>
@@ -51,15 +52,18 @@ if (!empty($_POST['amount']) && ($_POST['amount'] !== $amount)) {
         <td><?= $price ?></td>
         <td>
             <form action="" method="post">
-             <input type="number" name="amount" value="<?= $amount ?>">
+             <input type="number" size="3" min="0" max="999" step="1" name="amount" value="<?= $amount ?>">
              <input type="submit" name="send" value="ОК">
             </form>
         </td>
+        <td><?= $price * $amount ?></td>
     </tr>
 </table>
 <!-- Возврат из формы редактирования -->
-<br><br>
-<a href="basketProduct.php"><< В корзину</a><br>
+<br>
+<p>Количество товара "<?= $name ?>" составляет <?= $amount ?> шт. </p>
+<br>
+<a href="basketProduct.php"><< Назад в корзину</a><br>
 <a href="gallery.php">В зоопарк</a><br>
 <a href="index.php">На главную</a>
 </body>
