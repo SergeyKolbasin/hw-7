@@ -19,7 +19,12 @@ $price = $product['price'];             // цена единицы товара
 // Если кол-во не пусто и оно было изменено
 if (!empty($_POST['amount']) && ($_POST['amount'] !== $amount)) {
     $amount = $_POST['amount'];
-    // Здесь добавить запись в БД корзины
+    // Обновляем запись в БД корзины
+    if (insertBasketItem($id, $amount)) {
+        echo 'Количество товара изменено';
+    }else{
+        echo 'Что-то пошло не так';
+    }
 }
 ?>
 <! DOCTYPE html>
@@ -49,14 +54,14 @@ if (!empty($_POST['amount']) && ($_POST['amount'] !== $amount)) {
     <tr>
         <td><img width="100px" src="<?= '../' . $url ?> " alt="<?= $name ?>"></td>
         <td><?= $name ?></td>
-        <td><?= $price ?></td>
+        <td><?= sprintf("%01.2f", $price) ?></td>
         <td>
             <form action="" method="post">
              <input type="number" size="3" min="0" max="999" step="1" name="amount" value="<?= $amount ?>">
              <input type="submit" name="send" value="ОК">
             </form>
         </td>
-        <td><?= $price * $amount ?></td>
+        <td><?php printf("%01.2f", $price * $amount) ?></td>
     </tr>
 </table>
 <!-- Возврат из формы редактирования -->

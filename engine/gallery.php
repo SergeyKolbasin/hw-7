@@ -249,3 +249,22 @@ function getBasketItem($id, $userid)
     	        INNER JOIN gallery ON (baskets.productid=gallery.id) AND (baskets.id=$id)";
     return getSingle($sql);
 }
+
+/** Изменениее количества определенного товара в корзине
+ * @param   integer     $id         Идентификатор записи о товаре в корзине
+ * @param   integer     $amount     Количество товара
+ * @return  boolean           Результат выполнения запроса
+ */
+function insertBasketItem($id, $amount)
+{
+    $db = createConnection();
+    $id = (int)$id;
+    //$sql = "INSERT INTO `baskets.amount` VALUES $amount WHERE `id`=$id";
+    $sql = "UPDATE `baskets` SET `amount`='$amount' WHERE `id`=$id";
+    // Изменение в корзине
+    if (execQuery($sql)!=false) {
+        return true;
+    } else {
+        return false;
+    }
+}
