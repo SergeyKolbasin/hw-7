@@ -21,18 +21,21 @@
             <th>Наименование</th>
             <th>Цена</th>
             <th>Количество</th>
-            <th>Удаление</th>
+            <th>Стоимость</th>
+            <th>Операции</th>
         </tr>
         {foreach $basket as $basketItem}
             <tr>
                 <td><img width="100px" src="{$basketItem.url}" alt="{$basketItem.name}"></td>
                 <td>{$basketItem.name}</td>
                 <td>{sprintf("%01.2f", $basketItem.price)}</td>
-                <td>{$basketItem.amount}<a href="editBasketItem.php?id={$basketItem.id}"> - Изменить</a></td>
-                <td><a href="deleteBasketItem.php?id={$basketItem.id}&productid={$basketItem.productid}">Удалить</a></td>>
-            <!--
-            <td><?php printf("%01.2f", $price * $amount) ?></td>
-            -->
+                <td>{$basketItem.amount}</td>
+                <td>{sprintf("%01.2f", $basketItem.price*$basketItem.amount)}</td>
+                <td>
+                    <a href="editBasketItem.php?id={$basketItem.id}">Изменить</a>
+                    &nbsp
+                    <a href="deleteBasketItem.php?id={$basketItem.id}&productid={$basketItem.productid}">Удалить</a>
+                </td>
         </tr>
         {/foreach}
     </table>

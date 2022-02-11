@@ -10,11 +10,6 @@ if (!$id) {
 }
 $id = (int)$id;                         // id записи в корзине
 $userid = $_SESSION['login']['id'];     // id юзера
-function getBasketItem($id, $userid)
-{
-
-}
-
 $product = getBasketItem($id, $userid); // содержимое выбранной позиции корзины данного юзера
 $user = $product['description'];        // описание юзера(полное ФИО)
 $name = $product['name'];               // наименование товара
@@ -22,16 +17,12 @@ $url = $product['url'];                 // изображение товара
 $amount = $product['amount'];           // количество товара в корзине
 $price = $product['price'];             // цена единицы товара
 // Если кол-во не пусто и оно было изменено
-function insertBasketItem($id, $amount)
-{
-
-}
-
 if (!empty($_POST['amount']) && ($_POST['amount'] !== $amount)) {
     $amount = $_POST['amount'];
     // Обновляем запись в БД корзины
     if (insertBasketItem($id, $amount)) {
         echo 'Количество товара изменено';
+        header('location: basketProduct.php');
     }else{
         echo 'Что-то пошло не так';
     }
@@ -53,6 +44,10 @@ if (!empty($_POST['amount']) && ($_POST['amount'] !== $amount)) {
 <body>
 <p>Редактируем количество товара "<?= $name ?>"в корзине пользователя <i><?= $user ?></i></p>
 <hr>
+<a href="basketProduct.php"><< В корзину</a><br>
+<a href="index.php">На главную</a><br>
+<a href="gallery.php">В зоопарк</a><br>
+<br>
 <table>
     <tr>
         <th>Вид</th>
@@ -78,8 +73,5 @@ if (!empty($_POST['amount']) && ($_POST['amount'] !== $amount)) {
 <br>
 <p>Количество товара "<?= $name ?>" составляет <?= $amount ?> шт. </p>
 <br>
-<a href="basketProduct.php"><< В корзину</a><br>
-<a href="gallery.php">В зоопарк</a><br>
-<a href="index.php">На главную</a>
 </body>
 </html>
