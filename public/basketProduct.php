@@ -11,14 +11,6 @@ if (!empty($_SESSION['login'])) {
     header('location: login.php');
 }
 mainMenu();
-
 $smarty = new Smarty();
+$smarty->assign('basket', $basket);
 $smarty->display(SMARTY_TPL_DIR . 'basketProduct.tpl');
-
-foreach($basket as $product) {
-    echo $product['name'] . ' ' . $product['price'] . ' ' . $product['amount'] . ' ';
-    echo '<a href="editBasketItem.php?id=' . $product['id'] . '">Изменить</a>';
-    echo $product['price'] * $product['amount'];
-    echo '<a href="deleteBasketItem.php?id=' . $product['id'] . '&productid=' . $product['productid'] . '">Удалить</a>';
-    echo '<br>';
-}

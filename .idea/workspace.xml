@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e9df741f-d381-4f13-a483-5c598906f9f5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/smarty/templates/basketProduct.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/smarty/templates/basketProduct.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/basketProduct.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/basketProduct.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/editBasketItem.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/editBasketItem.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/templates_c/7b51bdcdb860639421036e5f2b2633f6f6aa5bb7_0.file.basketProduct.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/templates_c/7b51bdcdb860639421036e5f2b2633f6f6aa5bb7_0.file.basketProduct.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smarty/templates/basketProduct.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/smarty/templates/basketProduct.tpl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +71,7 @@
       <updated>1644217240082</updated>
       <workItem from="1644217252670" duration="1070000" />
       <workItem from="1644303711564" duration="4699000" />
-      <workItem from="1644554757395" duration="4846000" />
+      <workItem from="1644554757395" duration="11201000" />
     </task>
     <servers />
   </component>
