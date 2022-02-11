@@ -11,7 +11,10 @@ if (!empty($_SESSION['login'])) {
     header('location: login.php');
 }
 mainMenu();
-echo '<h3>Корзина покупок:</h3>';
+
+$smarty = new Smarty();
+$smarty->display(SMARTY_TPL_DIR . 'basketProduct.tpl');
+
 foreach($basket as $product) {
     echo $product['name'] . ' ' . $product['price'] . ' ' . $product['amount'] . ' ';
     echo '<a href="editBasketItem.php?id=' . $product['id'] . '">Изменить</a>';
