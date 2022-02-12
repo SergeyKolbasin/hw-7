@@ -27,19 +27,16 @@ $login = $_POST['login'] ?? false;
 $password = $_POST['password'] ?? false;
 // Если логин и пароль, попытка авторизоваться
 if ($login && $password) {
-    // преобразуем пароль в хэш
-    //$password = password_hash($password, PASSWORD_DEFAULT);
-    $password = md5($password);
-    // получаем пользователя из базы
-    $sql = "SELECT * FROM `users` WHERE `login` = '$login' AND `password` = '$password'";
+    $sql = "SELECT * FROM `users` WHERE `login` = '$login'";
     $user = getSingle($sql);
-    // Если пользователь найден, записываем его в сессию
-    if ($user) {
+    // Если пользователь найден и введенный пароль совпадает с его хэшем из БД
+    if ($user && password_verify($password, $user['password'])) {
         $_SESSION['login'] = $user;
         if (isset($_SESSION['login'])) {
-            header('location: ' . $_SESSION['originalURL']); // возврат на прежнее место сайта
+            // здесь нужен переход на страницу личного кабинета
+            header('location: ' . $_SESSION['originalURL']);    // возврат на прежнее место сайта
         }else{
-            header('location: index.php');                 // возврат на стартовую страницу
+            header('location: index.php');                      // возврат на стартовую страницу
         }
     } else {
         echo 'Неверная пара логин/пароль!';
