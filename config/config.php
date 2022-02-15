@@ -13,6 +13,7 @@
     define('SMARTY_TPL_DIR', SITE_DIR . 'smarty/templates/');   // Шаблоны шаблонизатора Smarty
     define('IMG_DIR', 'img/');                                  // Изображения
     define('PRODUCT_DIR', IMG_DIR . 'product/');                // Фотографии товаров
+    define('USERS_DIR', IMG_DIR . 'users/');                    // Фотографии юзеров
 
     // Константы соединения с б/д
     define('DB_HOST', 'hw');                            // Доменное имя сервера
@@ -30,4 +31,6 @@
     require_once ENGINE_DIR . 'gallery.php';                // Функции работы с галереей
     require_once ENGINE_DIR . 'news.php';                   // Функции работы с новостями
     require_once ENGINE_DIR . 'reviews.php';                // Функции работы с отзывами
+    require_once ENGINE_DIR . 'users.php';                  // Функции работы с личным кабинетом
     require_once SITE_DIR . 'smarty/lib/Smarty.class.php';  // Подключение класса Smarty
+

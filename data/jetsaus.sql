@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Фев 12 2022 г., 16:21
+-- Время создания: Фев 15 2022 г., 15:49
 -- Версия сервера: 10.4.22-MariaDB
 -- Версия PHP: 8.1.1
 
@@ -42,8 +42,6 @@ CREATE TABLE `baskets` (
 INSERT INTO `baskets` (`id`, `userid`, `productid`, `amount`, `last_action`) VALUES
 (3, 8, 9, 3, '2022-02-11 15:12:33'),
 (4, 7, 1, 1, '2022-02-04 15:20:36'),
-(10, 8, 4, 2, '2022-02-11 15:16:31'),
-(12, 8, 12, 3, '2022-02-11 15:05:58'),
 (13, 3, 13, 3, '2022-02-11 13:25:32'),
 (14, 3, 1, 1, '2022-02-11 13:31:21'),
 (17, 3, 6, 2, '2022-02-11 13:48:27'),
@@ -86,10 +84,10 @@ CREATE TABLE `gallery` (
 --
 
 INSERT INTO `gallery` (`id`, `id_category`, `url`, `size`, `name`, `description`, `views`, `price`) VALUES
-(1, 0, 'img/product/1.jpg', 170934, 'Дельфин', 'Дельфины (др.-греч. δελφῖνος, δελφίς) — водные млекопитающие инфраотряда китообразных, принадлежащие либо к семейству дельфиновых (Delphinidae) — морские, либо к надсемейству речных дельфинов (Platanistoidea) — пресноводные.', 49, '127.00'),
-(2, 0, 'img/product/2.jpg', 98882, 'Лисица', 'Лисица — общее название нескольких видов млекопитающих семейства псовые. Лишь 10 видов этой группы относят к роду собственно лисиц (лат. Vulpes). Наиболее известный и распространённый представитель — обыкновенная лисица (Vulpes vulpes).', 34, '19.50'),
+(1, 0, 'img/product/1.jpg', 170934, 'Дельфин', 'Дельфины (др.-греч. δελφῖνος, δελφίς) — водные млекопитающие инфраотряда китообразных, принадлежащие либо к семейству дельфиновых (Delphinidae) — морские, либо к надсемейству речных дельфинов (Platanistoidea) — пресноводные.', 50, '127.00'),
+(2, 0, 'img/product/2.jpg', 98882, 'Лисица', 'Лисица — общее название нескольких видов млекопитающих семейства псовые. Лишь 10 видов этой группы относят к роду собственно лисиц (лат. Vulpes). Наиболее известный и распространённый представитель — обыкновенная лисица (Vulpes vulpes).', 35, '19.50'),
 (3, 0, 'img/product/3.jpg', 372746, 'Коала', 'Коала (лат. Phascolarctos cinereus) — вид сумчатых, обитающий в Австралии. Единственный современный представитель семейства коаловых (Phascolarctidae) из отряда двурезцовых сумчатых (Diprotodontia).', 28, '56.09'),
-(4, 0, 'img/product/4.jpg', 339981, 'Лев', 'Лев (лат. Panthera leo) — вид хищных млекопитающих, один из четырёх представителей рода пантер (Panthera), относящегося к подсемейству больших кошек (Pantherinae) в составе семейства кошачьих (Felidae). Наряду с тигром — самая крупная из ныне живущих кошек, масса некоторых самцов может достигать 250 кг.', 35, '45.68'),
+(4, 0, 'img/product/4.jpg', 339981, 'Лев', 'Лев (лат. Panthera leo) — вид хищных млекопитающих, один из четырёх представителей рода пантер (Panthera), относящегося к подсемейству больших кошек (Pantherinae) в составе семейства кошачьих (Felidae). Наряду с тигром — самая крупная из ныне живущих кошек, масса некоторых самцов может достигать 250 кг.', 39, '45.68'),
 (5, 0, 'img/product/5.jpg', 442827, 'Рысь', 'Рысь (лат. Lynx) — род хищных млекопитающих семейства кошачьих, наиболее близкий к роду кошек (Felis).', 36, '67.12'),
 (6, 0, 'img/product/6.jpg', 365881, 'Панда', 'Панда (лат. Ailuridae) — семейство млекопитающих из подотряда псообразные (Caniformia) отряда хищных. Включает семь вымерших и один современный род. Единственный современный вид — малая, или красная панда (Ailurus fulgens).', 40, '90.43'),
 (7, 0, 'img/product/7.jpg', 254168, 'Белый медведь', '\'Белый медведь, или полярный медведь, северный медведь, ошкуй, нанук, умка (лат. Ursus maritimus — «медведь морской») — хищное млекопитающее семейства медвежьих, близкий родственник бурого медведя. Второй по величине сухопутный хищник планеты после гребнистого крокодила. Назван так из-за белой шерсти.', 34, '89.33'),
@@ -183,6 +181,7 @@ CREATE TABLE `users` (
   `description` varchar(255) NOT NULL COMMENT 'описание (полное имя)',
   `email` varchar(60) NOT NULL COMMENT 'e-mail пользователя',
   `role` smallint(5) NOT NULL COMMENT 'роль: 0-админ, 1-обычный юзер',
+  `photo` varchar(255) NOT NULL,
   `last_action` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -190,15 +189,15 @@ CREATE TABLE `users` (
 -- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`id`, `login`, `password`, `description`, `email`, `role`, `last_action`) VALUES
-(1, 'admin', '$2y$10$vGUe3hEtYt9MdXZc4Jiw1uXnmrtcgx/wMltQ7eASL4iQGZEWyvWxG', 'Администратор системы', 'admin@hw.loc', 0, '2022-02-12 14:43:13'),
-(2, 'user', '$2y$10$5WQCYfxirR0XhOEIrjOmDO9L0ROGmzo6VeK1gHgrLNsxZVo.9wsNi', 'Покупатель', 'customer@hw.loc', 1, '2022-02-12 14:45:39'),
-(3, 'ivanov', '$2y$10$x6XG8HiHgESaGS3fUgKKVeB/yWaQahcRO7CzS6X4AQhRQO4qtLZ7S', 'Иванов Иван Иванович', 'ivanov@hw.loc', 1, '2022-02-12 14:47:11'),
-(4, 'petrov', '$2y$10$.a3D3ksgllG2a/1P97cBpOgFc5/DqmtZeEaR7Y2pt068E0MWLKeTi', 'Петров Петр Петрович', 'petrov@hw.loc', 1, '2022-02-12 14:48:00'),
-(5, 'sidorov', '$2y$10$i5k3DnUG3ylApzZPdX1INukFfHM6fc6vAwOkBggIKMWSOfsG2DzYm', 'Сидоров Сидор Сидорович', 'sidorov@hw.loc', 1, '2022-02-12 14:48:48'),
-(6, 'dmitriev', '$2y$10$h3V9n69HNPrIEwGK8qxBsOCpJPbLoiY8LKG0sQKKiDXYvKSF8477C', 'Дмитриев Дмитрий Дмитриевич', 'dmitriev@hw.loc', 1, '2022-02-12 14:50:04'),
-(7, 'jetsaus', '$2y$10$E9DtNBXlsIuK.AeJou5kJO0/SIKPFUqarLa55u5AjpQTrA3eB7l2u', 'Колбасин Сергей Петрович', 'jetsaus@hw.loc', 0, '2022-02-12 14:50:45'),
-(8, 'q', '$2y$10$0sihEJzqPuGbU6LfFG6ZU.8ty6mXkbC0cEclTMrUticw1idUn3wS2', 'Тестовый пользователь', '', 0, '2022-02-12 14:20:46');
+INSERT INTO `users` (`id`, `login`, `password`, `description`, `email`, `role`, `photo`, `last_action`) VALUES
+(1, 'admin', '$2y$10$vGUe3hEtYt9MdXZc4Jiw1uXnmrtcgx/wMltQ7eASL4iQGZEWyvWxG', 'Администратор системы', 'admin@hw.loc', 0, '', '2022-02-12 14:43:13'),
+(2, 'user', '$2y$10$5WQCYfxirR0XhOEIrjOmDO9L0ROGmzo6VeK1gHgrLNsxZVo.9wsNi', 'Покупатель', 'customer@hw.loc', 1, '', '2022-02-12 14:45:39'),
+(3, 'ivanov', '$2y$10$x6XG8HiHgESaGS3fUgKKVeB/yWaQahcRO7CzS6X4AQhRQO4qtLZ7S', 'Иванов Иван Иванович', 'ivanov@hw.loc', 1, '01.jpg', '2022-02-15 14:24:48'),
+(4, 'petrov', '$2y$10$.a3D3ksgllG2a/1P97cBpOgFc5/DqmtZeEaR7Y2pt068E0MWLKeTi', 'Петров Петр Петрович', 'petrov@hw.loc', 1, '', '2022-02-12 14:48:00'),
+(5, 'sidorov', '$2y$10$i5k3DnUG3ylApzZPdX1INukFfHM6fc6vAwOkBggIKMWSOfsG2DzYm', 'Сидоров Сидор Сидорович', 'sidorov@hw.loc', 1, '', '2022-02-12 14:48:48'),
+(6, 'dmitriev', '$2y$10$h3V9n69HNPrIEwGK8qxBsOCpJPbLoiY8LKG0sQKKiDXYvKSF8477C', 'Дмитриев Дмитрий Дмитриевич', 'dmitriev@hw.loc', 1, '', '2022-02-12 14:50:04'),
+(7, 'jetsaus', '$2y$10$E9DtNBXlsIuK.AeJou5kJO0/SIKPFUqarLa55u5AjpQTrA3eB7l2u', 'Колбасин Сергей Петрович', 'jetsaus@hw.loc', 0, '', '2022-02-12 14:50:45'),
+(8, 'q', '$2y$10$0sihEJzqPuGbU6LfFG6ZU.8ty6mXkbC0cEclTMrUticw1idUn3wS2', 'Тестовый пользователь', '', 0, '', '2022-02-12 14:20:46');
 
 --
 -- Индексы сохранённых таблиц
