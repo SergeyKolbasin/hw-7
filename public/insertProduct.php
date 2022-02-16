@@ -8,7 +8,7 @@ $name = $_POST['name'] ?? '';                           // наименован�
 $description = $_POST['description'] ?? '';             // описание товара
 $price = $_POST['price'] ?? '';                        // цена товара
         // Проверка, вводились ли параметры товара
-        if ($name !== '' && $description !== '' || $price !== '') {
+        if ($name !== '' && $description !== '' && $price !== '') {
             if ($name && $description && $price) {          // если параметры товара введены загружаем файл фото
                 if (!empty($_FILES)) {
                     // Если выбран файл для загрузки
@@ -58,10 +58,8 @@ echo '<hr>';
 <h3>Новый товар</h3>
 <form enctype="multipart/form-data" method="POST">
     <span>Наименование: </span><input type="text" name="name" size="35"><br><br>
-    <fielset>
         <legend>Описание:</legend>
         <textarea name="description" cols="50" rows="15"></textarea>
-    </fielset>
     <br><br>
     <span>Цена: </span><input type="number" name="price" min="0" step="0.01"><br><br>
     <input type="hidden" name="MAX_FILE_SIZE" value="<?= MAX_FILE_SIZE ?>">

@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e9df741f-d381-4f13-a483-5c598906f9f5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/public/insertUser.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/users.php" beforeDir="false" afterPath="$PROJECT_DIR$/engine/users.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/insertProduct.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/insertProduct.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +29,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="PhpDebugGeneral" xdebug_force_break_when_no_path_mapping="false" xdebug_force_break_when_outside_project="false" />
+  <component name="PhpDebugGeneral" listening_started="true" xdebug_force_break_when_no_path_mapping="false" xdebug_force_break_when_outside_project="false" />
   <component name="PhpServers">
     <servers>
       <server host="hw" id="2050c029-5364-453b-8fa0-6d6e225f8591" name="hw" />
@@ -78,6 +81,7 @@
       <workItem from="1644554757395" duration="11201000" />
       <workItem from="1644585635490" duration="2456000" />
       <workItem from="1644663084945" duration="9816000" />
+      <workItem from="1645016619811" duration="7458000" />
     </task>
     <servers />
   </component>
