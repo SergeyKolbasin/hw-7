@@ -8,6 +8,7 @@
       <change afterPath="$PROJECT_DIR$/public/insertUser.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/jetsaus.sql" beforeDir="false" afterPath="$PROJECT_DIR$/data/jetsaus.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/users.php" beforeDir="false" afterPath="$PROJECT_DIR$/engine/users.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/insertProduct.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/insertProduct.php" afterDir="false" />
     </list>
@@ -81,7 +82,7 @@
       <workItem from="1644554757395" duration="11201000" />
       <workItem from="1644585635490" duration="2456000" />
       <workItem from="1644663084945" duration="9816000" />
-      <workItem from="1645016619811" duration="7458000" />
+      <workItem from="1645016619811" duration="7845000" />
     </task>
     <servers />
   </component>
