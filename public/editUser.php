@@ -32,22 +32,26 @@ if ($name !== $product['name'] || $description !== $product['description'] || $p
     }
 }
 */
-if (!empty($_FILES)) {
+//if (!empty($_FILES)) {
+
     // Если выбран файл для загрузки
     if (isset($_FILES['userfile']) && ($_FILES['userfile']['error']) !== UPLOAD_ERR_NO_FILE) {
         // Загружаем файл на сервер
-        $upload_dir = USERS_DIR;
-        //$upload_file = $upload_dir . basename($_FILES['userfile']['name']);
-        $upload_file = $photo;
-        // Переносим временный файл
-        if (move_uploaded_file($_FILES['userfile']['tmp_name'], $upload_file)) {
-            echo 'Файл фотографии корректен и был успешно загружен.' . '<br>';
+        $uploadDir = USERS_DIR;
+        $uploadFile = getPhotoName() . getExtension($_FILES['userfile']['name']);
+        $url = $uploadDir . $uploadFile;
+        // Переносим временный файл из временного каталога в хранилище
+        if (move_uploaded_file($_FILES['userfile']['tmp_name'], $url)) {
+            echo 'Файл корректен и был успешно загружен.' . '<br>';
         } else {
-            echo 'Возможная атака с помощью фаловой загрузки' . '<br>';
+            echo 'Возможная атака с помощью файловой загрузки';
         }
-        // и здесь возможно обновить страницу с новым фото ?
+    } else {
+        $uploadFile = '';
     }
-}
+
+
+//}
 ?>
 <!doctype>
 <html lang="ru">
@@ -70,7 +74,6 @@ if (!empty($_FILES)) {
     </div>
 </div>
 <br>
-
 <form enctype="multipart/form-data" method="POST">
     <span>Логин: </span><input type="text" name="name" size="35" value="<?= $login ?>"><br><br>
     <fielset>

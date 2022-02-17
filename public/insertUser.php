@@ -11,8 +11,9 @@ $email = $_POST['email'] ?? '';                                     // e-mail
 $role = $_POST['role'] ?? '0';                                      // роль в системе
 // Проверка, вводились ли данные юзера
 if ($login !== '' || $description !== '' || $address !== ''|| $email !== '') {
+    // Если такого логина не существует в базе
     if (!presentLogin($login)) {
-            // если все данные юзера введены
+            // Если все данные юзера введены
             if ($login && $description && $address && $email && ($role === '0' || $role === '1')) {
                 $photo = getPhotoName();
                 // Если выбран файл для загрузки
@@ -21,7 +22,7 @@ if ($login !== '' || $description !== '' || $address !== ''|| $email !== '') {
                     $uploadDir = USERS_DIR;
                     $uploadFile = getPhotoName() . getExtension($_FILES['userfile']['name']);
                     $url = $uploadDir . $uploadFile;
-                    // Переносим временный файл
+                    // Переносим временный файл из временного каталога в хранилище
                     if (move_uploaded_file($_FILES['userfile']['tmp_name'], $url)) {
                         echo 'Файл корректен и был успешно загружен.' . '<br>';
                     } else {
@@ -47,7 +48,7 @@ if ($login !== '' || $description !== '' || $address !== ''|| $email !== '') {
 echo '<hr>';
 ?>
 
-<!-- Добавление нового юзера -->
+<!-- Форма добавление нового юзера -->
 <!doctype>
 <html lang="ru">
 <head>
