@@ -2,6 +2,7 @@
 /*
  * Функции для работы с личным кабинетом
  */
+require_once __DIR__ . '/../config/config.php';
 /** Функция получает информацию об одном одном пользователе
  *
  * @param   integer    $id    Идентификатор фотографии
@@ -33,22 +34,22 @@ function getPhotoName(): string
 /** Добавление учетки пользователя
  * @param   string      $login          логин
  * @param   string      $description    описание (ФИО)
+ * @param   string      $address        адрес
  * @param   string      $email          e-mail
  * @param   integer     $role           роль в системе
  * @return  integer                     количество записей, затронутых запросом
  */
-function insertUser($name, $description, $price, $url, $size): int
+function insertUser($login, $description, $address, $email, $role): int
 {
     $db = createConnection();
     // Защита
-    $name = realEscape($db, $name);
+    $login = realEscape($db, $login);
     $description = realEscape($db, $description);
-    $url = realEscape($db, $url);
-    $size = (int)$size;
-    $views = 0;                                     // колчество просмотров
-    $price = (float)$price;
+    $address = realEscape($db, $address);
+    $email = realEscape($db, $email);
+    $role = realEscape($db, $role);
     // Добавление в БД
-    $sql = "INSERT INTO `gallery`(`name`, `description`, `views`, `price`, `url`, `size`)
-                VALUES ('$name', '$description', '$views', '$price', '$url', '$size')";
+    $sql = "INSERT INTO `users`(`login`, `description`, `address`, `email`, `role`)
+                VALUES ('$login', '$description', '$address', '$email', 'role')";
     return execQuery($sql, $db);
 }

@@ -4,46 +4,38 @@
  */
 require_once '../config/config.php';
 
-$login = $_POST['login'] ?? '';                         // логин
-$description = $_POST['description'] ?? '';             // описание юзера
-$email = $_POST['email'] ?? '';                         // e-mail
-$role = (int)$_POST['role'] ?? 0;                           // роль юзера в системе
-var_dump($_POST);
-var_dump($role);
-if (isset($a)) {
-    var_dump($a);
-}
+$login = $_POST['login'] ?? '';                                     // логин
+$description = $_POST['description'] ?? '';                         // описание юзера
+$address = $_POST['address'] ?? '';                                 // адрес юзера
+$email = $_POST['email'] ?? '';                                     // e-mail
+$role = $_POST['role'] ?? '0';
 // Проверка, вводились ли данные юзера
-if ($login !== '' && $description !== '' && $email !== '') {
-    if ($login && $description && $email && isset($role)) {    // если данные юзера введены загружаем файл фото
-        if (!empty($_FILES)) {
-            $photo=getPhotoName();
-            // Если выбран файл для загрузки
-            if (isset($_FILES['userfile']) && ($_FILES['userfile']['error']) !== UPLOAD_ERR_NO_FILE) {
-                // Загружаем файл на сервер
-                $uploadDir = USERS_DIR;
-                $uploadFile = getPhotoName() . getExtension($_FILES['userfile']['name']);
-                $url = $uploadDir . $uploadFile;
-                $size = $_FILES['userfile']['size'];
-                // Переносим временный файл
-                if (move_uploaded_file($_FILES['userfile']['tmp_name'], $url)) {
-                    echo 'Файл корректен и был успешно загружен.' . '<br>';
-                } else {
-                    echo 'Возможная атака с помощью файловой загрузки';
-                }
+if ($login !== '' || $description !== '' || $address !== ''|| $email !== '') {
+    // если данные юзера введены
+    if ($login && $description && $address && $email && ($role === '0' || $role === '1')) {
+        $photo=getPhotoName();
+        // Если выбран файл для загрузки
+        if (isset($_FILES['userfile']) && ($_FILES['userfile']['error']) !== UPLOAD_ERR_NO_FILE) {
+            // Загружаем файл на сервер
+            $uploadDir = USERS_DIR;
+            $uploadFile = getPhotoName() . getExtension($_FILES['userfile']['name']);
+            $url = $uploadDir . $uploadFile;
+            $size = $_FILES['userfile']['size'];
+            // Переносим временный файл
+            if (move_uploaded_file($_FILES['userfile']['tmp_name'], $url)) {
+                echo 'Файл корректен и был успешно загружен.' . '<br>';
             } else {
-                echo 'Файл не выбран';
+                echo 'Возможная атака с помощью файловой загрузки';
             }
         }
-        // Добавляем юзера в БД
-        if (insertUser($login, $description, $email, $role) == 1) {     // запросом д/б затронута только одна
-            echo 'Юзер добавлен' . '<br>';
+        if (insertUser($login, $description, $address, $email, $role)) {
+            echo 'Добавили юзера';
         } else {
             echo 'Произошла ошибка' . '<br>';
         }
-    } else {
-        echo 'Форма не заполнена';
     }
+} else {
+    echo 'Форма не заполнена';
 }
 echo '<hr>';
 ?>
@@ -65,8 +57,9 @@ echo '<hr>';
 <h3>Новый пользователь</h3>
 <form enctype="multipart/form-data" method="POST">
     <span>Логин: </span><input type="text" name="login" size="35" value="<?= $login ?>"><br><br>
-        <legend>Описание:</legend>
-        <textarea name="description" cols="50" rows="15"><?= $description ?></textarea>
+    <legend>Описание:</legend><textarea name="description" cols="50" rows="5"><?= $description ?></textarea>
+    <br><br>
+    <legend>Адрес:</legend><textarea name="address" cols="50" rows="5"><?= $description ?></textarea>
     <br><br>
     <span>e-mail: </span><input type="email" name="email" value="<?= $email ?>"><br><br>
     <span>Роль: </span><br>

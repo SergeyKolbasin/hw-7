@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Фев 16 2022 г., 17:36
+-- Время создания: Фев 17 2022 г., 09:07
 -- Версия сервера: 10.4.22-MariaDB
 -- Версия PHP: 8.1.1
 
@@ -179,10 +179,10 @@ CREATE TABLE `users` (
   `login` varchar(50) NOT NULL COMMENT 'имя пользователя в системе',
   `password` varchar(255) NOT NULL COMMENT 'пароль',
   `description` varchar(255) NOT NULL COMMENT 'описание (полное имя)',
+  `address` varchar(255) NOT NULL,
   `email` varchar(60) NOT NULL COMMENT 'e-mail пользователя',
   `role` smallint(5) NOT NULL COMMENT 'роль: 0-админ, 1-обычный юзер',
   `photo` varchar(255) NOT NULL,
-  `address` varchar(255) NOT NULL,
   `last_action` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -190,15 +190,15 @@ CREATE TABLE `users` (
 -- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`id`, `login`, `password`, `description`, `email`, `role`, `photo`, `address`, `last_action`) VALUES
-(1, 'admin', '$2y$10$vGUe3hEtYt9MdXZc4Jiw1uXnmrtcgx/wMltQ7eASL4iQGZEWyvWxG', 'Администратор системы', 'admin@hw.loc', 0, '', 'Главный офис', '2022-02-16 16:30:58'),
-(2, 'user', '$2y$10$5WQCYfxirR0XhOEIrjOmDO9L0ROGmzo6VeK1gHgrLNsxZVo.9wsNi', 'Покупатель', 'customer@hw.loc', 1, '', 'Подсобное помещение офиса', '2022-02-16 16:31:19'),
-(3, 'ivanov', '$2y$10$x6XG8HiHgESaGS3fUgKKVeB/yWaQahcRO7CzS6X4AQhRQO4qtLZ7S', 'Иванов Иван Иванович', 'ivanov@hw.loc', 1, '01.jpg', 'Республика Бурятия, с.Кабанск, ул.8 марта, д. 16', '2022-02-16 16:34:49'),
-(4, 'petrov', '$2y$10$.a3D3ksgllG2a/1P97cBpOgFc5/DqmtZeEaR7Y2pt068E0MWLKeTi', 'Петров Петр Петрович', 'petrov@hw.loc', 1, '', 'г.Нальчик, ул.Норильская 29-18', '2022-02-16 16:32:08'),
-(5, 'sidorov', '$2y$10$i5k3DnUG3ylApzZPdX1INukFfHM6fc6vAwOkBggIKMWSOfsG2DzYm', 'Сидоров Сидор Сидорович', 'sidorov@hw.loc', 1, '', 'Московская обл., г.Пушкино, ул.Колотушкина 67-19', '2022-02-16 16:32:46'),
-(6, 'dmitriev', '$2y$10$h3V9n69HNPrIEwGK8qxBsOCpJPbLoiY8LKG0sQKKiDXYvKSF8477C', 'Дмитриев Дмитрий Дмитриевич', 'dmitriev@hw.loc', 1, '', 'г.Оренбург, ул.Н.Петрова 19', '2022-02-16 16:33:13'),
-(7, 'jetsaus', '$2y$10$E9DtNBXlsIuK.AeJou5kJO0/SIKPFUqarLa55u5AjpQTrA3eB7l2u', 'Колбасин Сергей Петрович', 'jetsaus@hw.loc', 0, '', 'г.Улан-Удэ, ул.Павлова 76-37', '2022-02-16 16:33:32'),
-(8, 'q', '$2y$10$0sihEJzqPuGbU6LfFG6ZU.8ty6mXkbC0cEclTMrUticw1idUn3wS2', 'Тестовый пользователь', '', 0, '', 'г.Улан-Удэ, ул.Толстого 1', '2022-02-16 16:34:13');
+INSERT INTO `users` (`id`, `login`, `password`, `description`, `address`, `email`, `role`, `photo`, `last_action`) VALUES
+(1, 'admin', '$2y$10$vGUe3hEtYt9MdXZc4Jiw1uXnmrtcgx/wMltQ7eASL4iQGZEWyvWxG', 'Администратор системы', 'Главный офис', 'admin@hw.loc', 0, '', '2022-02-16 16:30:58'),
+(2, 'user', '$2y$10$5WQCYfxirR0XhOEIrjOmDO9L0ROGmzo6VeK1gHgrLNsxZVo.9wsNi', 'Покупатель', 'Подсобное помещение офиса', 'customer@hw.loc', 1, '', '2022-02-16 16:31:19'),
+(3, 'ivanov', '$2y$10$x6XG8HiHgESaGS3fUgKKVeB/yWaQahcRO7CzS6X4AQhRQO4qtLZ7S', 'Иванов Иван Иванович', 'Республика Бурятия, с.Кабанск, ул.8 марта, д. 16', 'ivanov@hw.loc', 1, '01.jpg', '2022-02-16 16:34:49'),
+(4, 'petrov', '$2y$10$.a3D3ksgllG2a/1P97cBpOgFc5/DqmtZeEaR7Y2pt068E0MWLKeTi', 'Петров Петр Петрович', 'г.Нальчик, ул.Норильская 29-18', 'petrov@hw.loc', 1, '', '2022-02-16 16:32:08'),
+(5, 'sidorov', '$2y$10$i5k3DnUG3ylApzZPdX1INukFfHM6fc6vAwOkBggIKMWSOfsG2DzYm', 'Сидоров Сидор Сидорович', 'Московская обл., г.Пушкино, ул.Колотушкина 67-19', 'sidorov@hw.loc', 1, '', '2022-02-16 16:32:46'),
+(6, 'dmitriev', '$2y$10$h3V9n69HNPrIEwGK8qxBsOCpJPbLoiY8LKG0sQKKiDXYvKSF8477C', 'Дмитриев Дмитрий Дмитриевич', 'г.Оренбург, ул.Н.Петрова 19', 'dmitriev@hw.loc', 1, '', '2022-02-16 16:33:13'),
+(7, 'jetsaus', '$2y$10$E9DtNBXlsIuK.AeJou5kJO0/SIKPFUqarLa55u5AjpQTrA3eB7l2u', 'Колбасин Сергей Петрович', 'г.Улан-Удэ, ул.Павлова 76-37', 'jetsaus@hw.loc', 0, '', '2022-02-16 16:33:32'),
+(8, 'q', '$2y$10$0sihEJzqPuGbU6LfFG6ZU.8ty6mXkbC0cEclTMrUticw1idUn3wS2', 'Тестовый пользователь', 'г.Улан-Удэ, ул.Толстого 1', '', 0, '', '2022-02-16 16:34:13');
 
 --
 -- Индексы сохранённых таблиц
