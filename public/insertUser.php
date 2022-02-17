@@ -11,31 +11,35 @@ $email = $_POST['email'] ?? '';                                     // e-mail
 $role = $_POST['role'] ?? '0';                                      // роль в системе
 // Проверка, вводились ли данные юзера
 if ($login !== '' || $description !== '' || $address !== ''|| $email !== '') {
-    // если данные юзера введены
-    if ($login && $description && $address && $email && ($role === '0' || $role === '1')) {
-        $photo=getPhotoName();
-        // Если выбран файл для загрузки
-        if (isset($_FILES['userfile']) && ($_FILES['userfile']['error']) !== UPLOAD_ERR_NO_FILE) {
-            // Загружаем файл на сервер
-            $uploadDir = USERS_DIR;
-            $uploadFile = getPhotoName() . getExtension($_FILES['userfile']['name']);
-            $url = $uploadDir . $uploadFile;
-            // Переносим временный файл
-            if (move_uploaded_file($_FILES['userfile']['tmp_name'], $url)) {
-                echo 'Файл корректен и был успешно загружен.' . '<br>';
+    if (!presentLogin($login)) {
+            // если все данные юзера введены
+            if ($login && $description && $address && $email && ($role === '0' || $role === '1')) {
+                $photo = getPhotoName();
+                // Если выбран файл для загрузки
+                if (isset($_FILES['userfile']) && ($_FILES['userfile']['error']) !== UPLOAD_ERR_NO_FILE) {
+                    // Загружаем файл на сервер
+                    $uploadDir = USERS_DIR;
+                    $uploadFile = getPhotoName() . getExtension($_FILES['userfile']['name']);
+                    $url = $uploadDir . $uploadFile;
+                    // Переносим временный файл
+                    if (move_uploaded_file($_FILES['userfile']['tmp_name'], $url)) {
+                        echo 'Файл корректен и был успешно загружен.' . '<br>';
+                    } else {
+                        echo 'Возможная атака с помощью файловой загрузки';
+                    }
+                } else {
+                    $uploadFile = '';
+                }
+                if (insertUser($login, $description, $address, $email, $role, $uploadFile)) {
+                    echo 'Добавили юзера';
+                } else {
+                    echo 'Произошла ошибка' . '<br>';
+                }
             } else {
-                echo 'Возможная атака с помощью файловой загрузки';
+                echo 'Что-то пошло не так';
             }
-        } else {
-            $uploadFile = '';
-        }
-        if (insertUser($login, $description, $address, $email, $role, $uploadFile)) {
-            echo 'Добавили юзера';
-        } else {
-            echo 'Произошла ошибка' . '<br>';
-        }
     } else {
-        echo 'Что-то пошло не так';
+        echo 'Такой логин уже существует, выберите другой';
     }
 } else {
     echo 'Форма не заполнена';
