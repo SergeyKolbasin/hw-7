@@ -8,7 +8,7 @@ $login = $_POST['login'] ?? '';                                     // логи�
 $description = $_POST['description'] ?? '';                         // описание юзера
 $address = $_POST['address'] ?? '';                                 // адрес юзера
 $email = $_POST['email'] ?? '';                                     // e-mail
-$role = $_POST['role'] ?? '0';
+$role = $_POST['role'] ?? '0';                                      // роль в системе
 // Проверка, вводились ли данные юзера
 if ($login !== '' || $description !== '' || $address !== ''|| $email !== '') {
     // если данные юзера введены
@@ -20,19 +20,22 @@ if ($login !== '' || $description !== '' || $address !== ''|| $email !== '') {
             $uploadDir = USERS_DIR;
             $uploadFile = getPhotoName() . getExtension($_FILES['userfile']['name']);
             $url = $uploadDir . $uploadFile;
-            $size = $_FILES['userfile']['size'];
             // Переносим временный файл
             if (move_uploaded_file($_FILES['userfile']['tmp_name'], $url)) {
                 echo 'Файл корректен и был успешно загружен.' . '<br>';
             } else {
                 echo 'Возможная атака с помощью файловой загрузки';
             }
+        } else {
+            $uploadFile = '';
         }
-        if (insertUser($login, $description, $address, $email, $role)) {
+        if (insertUser($login, $description, $address, $email, $role, $uploadFile)) {
             echo 'Добавили юзера';
         } else {
             echo 'Произошла ошибка' . '<br>';
         }
+    } else {
+        echo 'Что-то пошло не так';
     }
 } else {
     echo 'Форма не заполнена';
@@ -63,11 +66,11 @@ echo '<hr>';
     <br><br>
     <span>e-mail: </span><input type="email" name="email" value="<?= $email ?>"><br><br>
     <span>Роль: </span><br>
-        <select size="3" name="role" required>
-            <option disabled>Выберите роль</option>
-            <option selected value="1">Пользователь</option>
-            <option value="0">Администратор</option>
-        </select>
+    <select size="3" name="role" required>
+        <option disabled>Выберите роль</option>
+        <option selected value="1">Пользователь</option>
+        <option value="0">Администратор</option>
+    </select>
     <br><br>
     <input type="hidden" name="MAX_FILE_SIZE" value="<?= MAX_FILE_SIZE ?>">
     <span>Загрузить фото: </span><input type="file" name="userfile"><br><br>

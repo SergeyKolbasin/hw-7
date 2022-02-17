@@ -37,9 +37,10 @@ function getPhotoName(): string
  * @param   string      $address        адрес
  * @param   string      $email          e-mail
  * @param   integer     $role           роль в системе
+ * @param   string      $photo          имя файла с фото
  * @return  integer                     количество записей, затронутых запросом
  */
-function insertUser($login, $description, $address, $email, $role): int
+function insertUser($login, $description, $address, $email, $role, $photo): int
 {
     $db = createConnection();
     // Защита
@@ -47,9 +48,8 @@ function insertUser($login, $description, $address, $email, $role): int
     $description = realEscape($db, $description);
     $address = realEscape($db, $address);
     $email = realEscape($db, $email);
-    $role = realEscape($db, $role);
     // Добавление в БД
-    $sql = "INSERT INTO `users`(`login`, `description`, `address`, `email`, `role`)
-                VALUES ('$login', '$description', '$address', '$email', 'role')";
+    $sql = "INSERT INTO `users`(`login`, `description`, `address`, `email`, `role`, `photo`)
+                VALUES ('$login', '$description', '$address', '$email', '$role', '$photo')";
     return execQuery($sql, $db);
 }
