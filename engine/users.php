@@ -69,3 +69,27 @@ function insertUser($login, $description, $address, $email, $role, $photo): int
                 VALUES ('$login', '$description', '$address', '$email', '$role', '$photo')";
     return execQuery($sql, $db);
 }
+
+// $id, $description, $address, $email, $photo
+/** Изменение учетки пользователя
+ * @param   string      $id             id юзера
+ * @param   string      $description    описание (ФИО)
+ * @param   string      $address        адрес
+ * @param   string      $email          e-mail
+ * @param   string      $photo          имя файла с фото
+ * @return  integer                     количество записей, затронутых запросом
+ */
+function editUser($id, $description, $address, $email, $photo): int
+{
+    $db = createConnection();
+    // Защита
+    $id = realEscape($db, $id);
+    $description = realEscape($db, $description);
+    $address = realEscape($db, $address);
+    $email = realEscape($db, $email);
+    // Изменение в БД
+    //UPDATE `gallery` SET `name`='$name', `description`='$description', `price`='$price' WHERE `id`=$id
+    $sql = "UPDATE `users` SET `description`='$description', `address`='$address', `email`='$email', `photo`='$photo'
+             WHERE `id`=$id";
+    return execQuery($sql, $db);
+}

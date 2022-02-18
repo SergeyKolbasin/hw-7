@@ -18,7 +18,7 @@ $address = $_POST['address'] ?? $user['address'];               // адрес
 $photo = USERS_DIR . $user['photo'];                            // фото юзера
 $lastAction = $user['last_action'];                             // дата/время последнего действия в системе
 // Проверка, редактировались ли параметры кабинета
-if ($description !== '' || $email !== '' || $address !== ''){
+if ($description !== '' || $email !== '' || $address !== '') {
     if ($description && $email && $address) {
         /* Редактируем кабинет */
         // Если выбран файл для загрузки
@@ -27,9 +27,9 @@ if ($description !== '' || $email !== '' || $address !== ''){
                 // Загружаем файл на сервер
                 $uploadDir = USERS_DIR;
                 $uploadFile = (string)$id . getExtension($_FILES['userfile']['name']);
-                $url = $uploadDir . $uploadFile;
+                $photo = $uploadDir . $uploadFile;
                 // Переносим временный файл из временного каталога в хранилище
-                if (move_uploaded_file($_FILES['userfile']['tmp_name'], $url)) {
+                if (move_uploaded_file($_FILES['userfile']['tmp_name'], $photo)) {
                     echo 'Файл корректен и был успешно загружен.' . '<br>';
                 } else {
                     echo 'Возможная атака с помощью файловой загрузки';
@@ -37,13 +37,16 @@ if ($description !== '' || $email !== '' || $address !== ''){
             } else {
                 $uploadFile = '';
             }
+        } else {
+            echo 'Файл не выбран';
         }
         // Запросом д/б затронута только одна запись
-        //if (editUser($id, $login, $description, $address, $email, $photo) == 1) {
+        if (editUser($id, $description, $address, $email, $photo) == 1) {
             echo 'Кабинет изменен' . '<br>';
         } else {
             echo 'Произошла ошибка или не заполнена форма' . '<br>';
         }
+    }
 }
 ?>
 <!doctype>
@@ -62,7 +65,7 @@ if ($description !== '' || $email !== '' || $address !== ''){
 <p>Личный кабинет пользователя: <i><?= $user['description'] ?></i></p>
 <div class="container">
     <div class="img">
-        <img src="<?= $photo ?>" alt="<?= $user['photo'] ?>" width="300">
+        <img src="<?= $photo ?>" alt="<?= $user['description'] ?>" width="300">
 <!--        <img src="<?/*= $photo */?>" alt="<?/*= $user['description'] */?>" width="400" height="300">-->
     </div>
 </div>
@@ -87,3 +90,4 @@ if ($description !== '' || $email !== '' || $address !== ''){
 <a href="/gallery.php"><< В зоопарк</a><br>
 <a href="index.php">На главную</a>
 </body>
+</html>
