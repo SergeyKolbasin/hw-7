@@ -15,9 +15,9 @@ if ($login !== '' || $description !== '' || $address !== ''|| $email !== '') {
     if (!presentLogin($login)) {
             // Если все данные юзера введены
             if ($login && $description && $address && $email && ($role === '0' || $role === '1')) {
-                $photo = getPhotoName();
                 // Если выбран файл для загрузки
                 if (isset($_FILES['userfile']) && ($_FILES['userfile']['error']) !== UPLOAD_ERR_NO_FILE) {
+                    $photo = getPhotoName();            // определим имя файла фото
                     // Загружаем файл на сервер
                     $uploadDir = USERS_DIR;
                     $uploadFile = getPhotoName() . getExtension($_FILES['userfile']['name']);

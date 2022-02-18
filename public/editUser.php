@@ -18,35 +18,33 @@ $address = $_POST['address'] ?? $user['address'];               // адрес
 $photo = USERS_DIR . $user['photo'];                            // фото юзера
 $lastAction = $user['last_action'];                             // дата/время последнего действия в системе
 // Проверка, редактировались ли параметры кабинета
-if ($description !== $user['description'] || $email !== $user['email'] || $address !== $user['address']){
+if ($description !== '' || $email !== '' || $address !== ''){
     if ($description && $email && $address) {
-        // Редактируем кабинет
-        //if (updateProduct($id, $name, $description, $price) == 1) {     // запросом д/б затронута только одна запись
+        /* Редактируем кабинет */
+        // Если выбран файл для загрузки
+        if (!empty($_FILES)) {
+            if (isset($_FILES['userfile']) && ($_FILES['userfile']['error']) !== UPLOAD_ERR_NO_FILE) {
+                // Загружаем файл на сервер
+                $uploadDir = USERS_DIR;
+                $uploadFile = (string)$id . getExtension($_FILES['userfile']['name']);
+                $url = $uploadDir . $uploadFile;
+                // Переносим временный файл из временного каталога в хранилище
+                if (move_uploaded_file($_FILES['userfile']['tmp_name'], $url)) {
+                    echo 'Файл корректен и был успешно загружен.' . '<br>';
+                } else {
+                    echo 'Возможная атака с помощью файловой загрузки';
+                }
+            } else {
+                $uploadFile = '';
+            }
+        }
+        // Запросом д/б затронута только одна запись
+        //if (editUser($id, $login, $description, $address, $email, $photo) == 1) {
             echo 'Кабинет изменен' . '<br>';
         } else {
             echo 'Произошла ошибка или не заполнена форма' . '<br>';
         }
 }
-//if (!empty($_FILES)) {
-/*
-    // Если выбран файл для загрузки
-    if (isset($_FILES['userfile']) && ($_FILES['userfile']['error']) !== UPLOAD_ERR_NO_FILE) {
-        // Загружаем файл на сервер
-        $uploadDir = USERS_DIR;
-        $uploadFile = getPhotoName() . getExtension($_FILES['userfile']['name']);
-        $url = $uploadDir . $uploadFile;
-        // Переносим временный файл из временного каталога в хранилище
-        if (move_uploaded_file($_FILES['userfile']['tmp_name'], $url)) {
-            echo 'Файл корректен и был успешно загружен.' . '<br>';
-        } else {
-            echo 'Возможная атака с помощью файловой загрузки';
-        }
-    } else {
-        $uploadFile = '';
-    }
-
-*/
-//}
 ?>
 <!doctype>
 <html lang="ru">
@@ -64,14 +62,14 @@ if ($description !== $user['description'] || $email !== $user['email'] || $addre
 <p>Личный кабинет пользователя: <i><?= $user['description'] ?></i></p>
 <div class="container">
     <div class="img">
-        <img src="<?= $photo ?>" alt="<?= $user['description'] ?>" width="300">
+        <img src="<?= $photo ?>" alt="<?= $user['photo'] ?>" width="300">
 <!--        <img src="<?/*= $photo */?>" alt="<?/*= $user['description'] */?>" width="400" height="300">-->
     </div>
 </div>
 <br>
 <form enctype="multipart/form-data" method="POST">
     <span>Логин: </span><input type="text" name="login" size="15" value="<?= $user['login'] ?>" disabled><br><br>
-    <span>Последние действия: </span><input type="text" name="" size="20" value="<?= $user['last_action'] ?>"
+    <span>Последяя активность: </span><input type="text" name="" size="20" value="<?= $user['last_action'] ?>"
                                             disabled><br><br>
     <legend>Описание:</legend>
     <textarea name="description" cols="50" rows="4"><?= $description ?></textarea>
