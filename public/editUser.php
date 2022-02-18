@@ -11,29 +11,24 @@ if (!$id) {
 $id = (int)$id;
 $user = getUser($id);
 
-$login = $_POST['login'] ?? $user['login'];                     // наименование товара
-$description = $_POST['description'] ?? $user['description'];   // описание товара
-$email = $_POST['email'] ?? $user['email'];                     // цена товара
-$role = $_POST['role'] ?? $user['role'];                        // роль в системе
-$photo = USERS_DIR . $user['photo'];                                        // фото юзера
+$description = $_POST['description'] ?? $user['description'];   // описание пользователя
+$email = $_POST['email'] ?? $user['email'];                     // его e-mail
+$address = $_POST['address'] ?? $user['address'];               // адрес
+//$role = $_POST['role'] ?? $user['role'];                        // роль в системе
+$photo = USERS_DIR . $user['photo'];                            // фото юзера
 $lastAction = $user['last_action'];                             // дата/время последнего действия в системе
-// Проверка, редактировались ли параметры товара
-/*
-if ($name !== $product['name'] || $description !== $product['description'] || $price !== $product['price']) {
-    if ($name && $description && $price) {
-        // Редактируем товар
-        if (updateProduct($id, $name, $description, $price) == 1) {     // запросом д/б затронута только одна запись
-            echo 'Товар изменен' . '<br>';
+// Проверка, редактировались ли параметры кабинета
+if ($description !== $user['description'] || $email !== $user['email'] || $address !== $user['address']){
+    if ($description && $email && $address) {
+        // Редактируем кабинет
+        //if (updateProduct($id, $name, $description, $price) == 1) {     // запросом д/б затронута только одна запись
+            echo 'Кабинет изменен' . '<br>';
         } else {
-            echo 'Произошла ошибка' . '<br>';
+            echo 'Произошла ошибка или не заполнена форма' . '<br>';
         }
-    } elseif ($name || $description || $price) {
-        echo 'Форма не заполнена' . '<br>';
-    }
 }
-*/
 //if (!empty($_FILES)) {
-
+/*
     // Если выбран файл для загрузки
     if (isset($_FILES['userfile']) && ($_FILES['userfile']['error']) !== UPLOAD_ERR_NO_FILE) {
         // Загружаем файл на сервер
@@ -50,7 +45,7 @@ if ($name !== $product['name'] || $description !== $product['description'] || $p
         $uploadFile = '';
     }
 
-
+*/
 //}
 ?>
 <!doctype>
@@ -75,13 +70,17 @@ if ($name !== $product['name'] || $description !== $product['description'] || $p
 </div>
 <br>
 <form enctype="multipart/form-data" method="POST">
-    <span>Логин: </span><input type="text" name="name" size="35" value="<?= $login ?>"><br><br>
-    <fielset>
-        <legend>Описание:</legend>
-        <textarea name="description" cols="50" rows="15"><?= $description ?></textarea>
-    </fielset>
+    <span>Логин: </span><input type="text" name="login" size="15" value="<?= $user['login'] ?>" disabled><br><br>
+    <span>Последние действия: </span><input type="text" name="" size="20" value="<?= $user['last_action'] ?>"
+                                            disabled><br><br>
+    <legend>Описание:</legend>
+    <textarea name="description" cols="50" rows="4"><?= $description ?></textarea>
     <br><br>
-    <span>e-mail: </span><input type="email" name="price" value="<?= $email ?>"><br><br>
+    <legend>Адрес:</legend>
+    <textarea name="address" cols="50" rows="4"><?= $address ?></textarea>
+    <br><br><br>
+    <span>e-mail: </span><input type="email" name="price" value="<?= $email ?>">
+    <br><br>
     <input type="hidden" name="MAX_FILE_SIZE" value="<?= MAX_FILE_SIZE ?>">
     <span>Загрузить фото: </span><input type="file" name="userfile"><br><br>
     <input type="submit" value="Отправить">
