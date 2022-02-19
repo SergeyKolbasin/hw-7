@@ -88,7 +88,6 @@ function editUser($id, $description, $address, $email, $photo): int
     $address = realEscape($db, $address);
     $email = realEscape($db, $email);
     // Изменение в БД
-    //UPDATE `gallery` SET `name`='$name', `description`='$description', `price`='$price' WHERE `id`=$id
     $sql = "UPDATE `users` SET `description`='$description', `address`='$address', `email`='$email', `photo`='$photo'
              WHERE `id`=$id";
     return execQuery($sql, $db);
