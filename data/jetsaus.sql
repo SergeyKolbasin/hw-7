@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Фев 21 2022 г., 09:10
+-- Время создания: Фев 21 2022 г., 10:04
 -- Версия сервера: 10.4.22-MariaDB
 -- Версия PHP: 8.1.1
 
@@ -198,7 +198,7 @@ INSERT INTO `users` (`id`, `login`, `password`, `description`, `address`, `email
 (5, 'sidorov', '$2y$10$i5k3DnUG3ylApzZPdX1INukFfHM6fc6vAwOkBggIKMWSOfsG2DzYm', 'Сидоров Сидор Сидорович', 'Московская обл., г.Пушкино, ул.Колотушкина 67-19', 'sidorov@hw.loc', 1, 'img/users/5.jpg', '2022-02-21 07:22:11'),
 (6, 'dmitriev', '$2y$10$h3V9n69HNPrIEwGK8qxBsOCpJPbLoiY8LKG0sQKKiDXYvKSF8477C', 'Дмитриев Дмитрий Дмитриевич', 'г.Оренбург, ул.Н.Петрова 19', 'dmitriev@hw.loc', 1, 'img/users/6.jpg', '2022-02-21 07:22:31'),
 (7, 'jetsaus', '$2y$10$E9DtNBXlsIuK.AeJou5kJO0/SIKPFUqarLa55u5AjpQTrA3eB7l2u', 'Колбасин Сергей Петрович.', 'г.Улан-Удэ, ул.Павлова 76-37', 'jetsaus@hw.loc', 0, 'img/users/7.jpg', '2022-02-21 07:22:47'),
-(8, 'q', '$2y$10$8atbpxIDU4yxmuqUDCFhMOPmDJlTswruWBLPMGgu8WkGko2sAbAPq', 'Тестовый юзер', 'Тестовый юзер', 'luser@hw.ru', 1, 'img/users/8.jpg', '2022-02-21 08:04:01'),
+(8, 'q', '$2y$10$K.vsUQZOHoAF9nLJqIypiuxK5q9KIX12iHhmTFjjf8xx8yraDrxbm', 'Тестовый юзер', 'Тестовый юзер', 'luser@hw.ru', 1, 'img/users/8.jpg', '2022-02-21 08:50:00'),
 (9, 'z', '$2y$10$vacuKb4q6sDVFenz6FUob.5LHTH4vRlcLpdM01ZRo9b4RDs/jieJK', 'Тестовый админ', 'Кабинет админа', 'minda@hw.ru', 0, 'img/users/9.jpg', '2022-02-21 08:05:56');
 
 --

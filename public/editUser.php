@@ -10,7 +10,7 @@ if (!$id) {
 }
 $id = (int)$id;
 $user = getUser($id);
-
+$password = $_POST['password'] ?? $user['password'];            // пароль
 $description = $_POST['description'] ?? $user['description'];   // описание пользователя
 $email = $_POST['email'] ?? $user['email'];                     // его e-mail
 $address = $_POST['address'] ?? $user['address'];               // адрес
@@ -18,8 +18,9 @@ $address = $_POST['address'] ?? $user['address'];               // адрес
 $photo = $user['photo'];                                        // фото юзера
 $lastAction = $user['last_action'];                             // дата/время последнего действия в системе
 // Проверка, редактировались ли параметры кабинета
-if ($description !== $user['description'] || $email !== $user['email'] || $address !== $user['address'] || !empty($_FILES)) {
-    if ($description && $email && $address) {
+if ($password !== $user['password'] ||$description !== $user['description'] || $email !== $user['email'] || $address
+    !== $user['address'] || !empty($_FILES)) {
+    if ($password && $description && $email && $address) {
         // Если выбран файл для загрузки
         if (!empty($_FILES)) {
             if ((isset($_FILES['userfile']) && ($_FILES['userfile']['error']) !== UPLOAD_ERR_NO_FILE)) {
@@ -39,7 +40,7 @@ if ($description !== $user['description'] || $email !== $user['email'] || $addre
         }
 
         // Запросом д/б затронута только одна запись
-        if (editUser($id, $description, $address, $email, $photo) == 1) {
+        if (editUser($id, $password, $description, $address, $email, $photo) == 1) {
             echo 'Данные в кабинете изменены.' . '<br>';
             echo '<hr>';
         } else {
@@ -72,7 +73,9 @@ if ($description !== $user['description'] || $email !== $user['email'] || $addre
 </div>
 <br>
 <form enctype="multipart/form-data" method="POST">
-    <span>Логин: </span><input type="text" name="login" size="15" value="<?= $user['login'] ?>" disabled><br><br>
+    <span>Логин: </span><input type="text" name="login" size="10" value="<?= $user['login'] ?>" disabled>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span>Пароль: </span><input type="password" name="password" size="10"><br><br>
     <span>Последяя активность: </span><input type="text" name="last_action" size="20" value="<?= $user['last_action'] ?>"
                                             disabled><br><br>
     <legend>Описание:</legend>

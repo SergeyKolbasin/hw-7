@@ -11,11 +11,11 @@ $address = $_POST['address'] ?? '';                                 // адре�
 $email = $_POST['email'] ?? '';                                     // e-mail
 $role = $_POST['role'] ?? '0';                                      // роль в системе
 // Проверка, вводились ли данные юзера
-if ($login !== '' || $description !== '' || $address !== ''|| $email !== '') {
+if ($login !== '' || $password !== ''|| $description !== '' || $address !== ''|| $email !== '') {
     // Если такого логина не существует в базе
     if (!presentLogin($login)) {
             // Если все данные юзера введены
-            if ($login && $description && $address && $email && ($role === '0' || $role === '1')) {
+            if ($login && $password && $description && $address && $email && ($role === '0' || $role === '1')) {
                 // Если выбран файл для загрузки
                 if (isset($_FILES['userfile']) && ($_FILES['userfile']['error']) !== UPLOAD_ERR_NO_FILE) {
                     $photo = getPhotoName();            // определим имя файла фото
@@ -66,7 +66,7 @@ echo '<hr>';
 <h3>Новый пользователь</h3>
 <form enctype="multipart/form-data" method="POST">
     <span>Логин: </span><input type="text" name="login" size="10" value="<?= $login ?>">
-    &nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <span>Пароль: </span><input type="password" name="password" size="10" value="<?= $password ?>"><br><br>
     <legend>Описание:</legend><textarea name="description" cols="50" rows="5"><?= $description ?></textarea>
     <br><br>

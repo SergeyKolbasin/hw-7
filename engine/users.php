@@ -62,7 +62,7 @@ function insertUser($login, $password, $description, $address, $email, $role, $p
     $db = createConnection();
     // Защита
     $login = realEscape($db, $login);
-    $password = password_hash(realEscape($db, $login), PASSWORD_DEFAULT);
+    $password = password_hash(realEscape($db, $password), PASSWORD_DEFAULT);
     $description = realEscape($db, $description);
     $address = realEscape($db, $address);
     $email = realEscape($db, $email);
@@ -72,25 +72,26 @@ function insertUser($login, $password, $description, $address, $email, $role, $p
     return execQuery($sql, $db);
 }
 
-// $id, $description, $address, $email, $photo
 /** Изменение учетки пользователя
  * @param   string      $id             id юзера
+ * @param   string      $password       пароль
  * @param   string      $description    описание (ФИО)
  * @param   string      $address        адрес
  * @param   string      $email          e-mail
  * @param   string      $photo          имя файла с фото
  * @return  integer                     количество записей, затронутых запросом
  */
-function editUser($id, $description, $address, $email, $photo): int
+function editUser($id, $password, $description, $address, $email, $photo): int
 {
     $db = createConnection();
     // Защита
     $id = realEscape($db, $id);
+    $password = $password = password_hash(realEscape($db, $password), PASSWORD_DEFAULT);
     $description = realEscape($db, $description);
     $address = realEscape($db, $address);
     $email = realEscape($db, $email);
     // Изменение в БД
-    $sql = "UPDATE `users` SET `description`='$description', `address`='$address', `email`='$email', `photo`='$photo'
+    $sql = "UPDATE `users` SET `password`='$password', `description`='$description', `address`='$address', `email`='$email', `photo`='$photo'
              WHERE `id`=$id";
     return execQuery($sql, $db);
 }
