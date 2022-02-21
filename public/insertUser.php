@@ -5,6 +5,7 @@
 require_once '../config/config.php';
 
 $login = $_POST['login'] ?? '';                                     // логин
+$password = $_POST['password'] ?? '';                               // пароль
 $description = $_POST['description'] ?? '';                         // описание юзера
 $address = $_POST['address'] ?? '';                                 // адрес юзера
 $email = $_POST['email'] ?? '';                                     // e-mail
@@ -31,7 +32,7 @@ if ($login !== '' || $description !== '' || $address !== ''|| $email !== '') {
                 } else {
                     $uploadFile = '';
                 }
-                if (insertUser($login, $description, $address, $email, $role, $uploadFile)) {
+                if (insertUser($login, $password, $description, $address, $email, $role, $url)) {
                     echo 'Добавили юзера';
                 } else {
                     echo 'Произошла ошибка' . '<br>';
@@ -64,7 +65,9 @@ echo '<hr>';
 <body>
 <h3>Новый пользователь</h3>
 <form enctype="multipart/form-data" method="POST">
-    <span>Логин: </span><input type="text" name="login" size="35" value="<?= $login ?>"><br><br>
+    <span>Логин: </span><input type="text" name="login" size="10" value="<?= $login ?>">
+    &nbsp;&nbsp;&nbsp;
+    <span>Пароль: </span><input type="password" name="password" size="10" value="<?= $password ?>"><br><br>
     <legend>Описание:</legend><textarea name="description" cols="50" rows="5"><?= $description ?></textarea>
     <br><br>
     <legend>Адрес:</legend><textarea name="address" cols="50" rows="5"><?= $description ?></textarea>

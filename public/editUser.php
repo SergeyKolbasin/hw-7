@@ -19,7 +19,7 @@ $photo = $user['photo'];                                        // фото юз
 $lastAction = $user['last_action'];                             // дата/время последнего действия в системе
 // Проверка, редактировались ли параметры кабинета
 if ($description !== $user['description'] || $email !== $user['email'] || $address !== $user['address'] || !empty($_FILES)) {
-    if ($description && $email && $address && $photo) {
+    if ($description && $email && $address) {
         // Если выбран файл для загрузки
         if (!empty($_FILES)) {
             if ((isset($_FILES['userfile']) && ($_FILES['userfile']['error']) !== UPLOAD_ERR_NO_FILE)) {

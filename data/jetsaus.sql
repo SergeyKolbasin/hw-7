@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Фев 17 2022 г., 09:07
+-- Время создания: Фев 21 2022 г., 09:10
 -- Версия сервера: 10.4.22-MariaDB
 -- Версия PHP: 8.1.1
 
@@ -191,14 +191,15 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `login`, `password`, `description`, `address`, `email`, `role`, `photo`, `last_action`) VALUES
-(1, 'admin', '$2y$10$vGUe3hEtYt9MdXZc4Jiw1uXnmrtcgx/wMltQ7eASL4iQGZEWyvWxG', 'Администратор системы', 'Главный офис', 'admin@hw.loc', 0, '', '2022-02-16 16:30:58'),
-(2, 'user', '$2y$10$5WQCYfxirR0XhOEIrjOmDO9L0ROGmzo6VeK1gHgrLNsxZVo.9wsNi', 'Покупатель', 'Подсобное помещение офиса', 'customer@hw.loc', 1, '', '2022-02-16 16:31:19'),
-(3, 'ivanov', '$2y$10$x6XG8HiHgESaGS3fUgKKVeB/yWaQahcRO7CzS6X4AQhRQO4qtLZ7S', 'Иванов Иван Иванович', 'Республика Бурятия, с.Кабанск, ул.8 марта, д. 16', 'ivanov@hw.loc', 1, '01.jpg', '2022-02-16 16:34:49'),
-(4, 'petrov', '$2y$10$.a3D3ksgllG2a/1P97cBpOgFc5/DqmtZeEaR7Y2pt068E0MWLKeTi', 'Петров Петр Петрович', 'г.Нальчик, ул.Норильская 29-18', 'petrov@hw.loc', 1, '', '2022-02-16 16:32:08'),
-(5, 'sidorov', '$2y$10$i5k3DnUG3ylApzZPdX1INukFfHM6fc6vAwOkBggIKMWSOfsG2DzYm', 'Сидоров Сидор Сидорович', 'Московская обл., г.Пушкино, ул.Колотушкина 67-19', 'sidorov@hw.loc', 1, '', '2022-02-16 16:32:46'),
-(6, 'dmitriev', '$2y$10$h3V9n69HNPrIEwGK8qxBsOCpJPbLoiY8LKG0sQKKiDXYvKSF8477C', 'Дмитриев Дмитрий Дмитриевич', 'г.Оренбург, ул.Н.Петрова 19', 'dmitriev@hw.loc', 1, '', '2022-02-16 16:33:13'),
-(7, 'jetsaus', '$2y$10$E9DtNBXlsIuK.AeJou5kJO0/SIKPFUqarLa55u5AjpQTrA3eB7l2u', 'Колбасин Сергей Петрович', 'г.Улан-Удэ, ул.Павлова 76-37', 'jetsaus@hw.loc', 0, '', '2022-02-16 16:33:32'),
-(8, 'q', '$2y$10$0sihEJzqPuGbU6LfFG6ZU.8ty6mXkbC0cEclTMrUticw1idUn3wS2', 'Тестовый пользователь', 'г.Улан-Удэ, ул.Толстого 1', '', 0, '', '2022-02-16 16:34:13');
+(1, 'admin', '$2y$10$vGUe3hEtYt9MdXZc4Jiw1uXnmrtcgx/wMltQ7eASL4iQGZEWyvWxG', 'Администратор системы', 'Главный офис', 'admin@hw.loc', 0, 'img/users/1.jpg', '2022-02-21 07:20:31'),
+(2, 'user', '$2y$10$5WQCYfxirR0XhOEIrjOmDO9L0ROGmzo6VeK1gHgrLNsxZVo.9wsNi', 'Покупатель', 'Подсобное помещение офиса', 'customer@hw.loc', 1, 'img/users/2.jpg', '2022-02-21 07:20:53'),
+(3, 'ivanov', '$2y$10$x6XG8HiHgESaGS3fUgKKVeB/yWaQahcRO7CzS6X4AQhRQO4qtLZ7S', 'Иванов Иван Иванович', 'Республика Бурятия, с.Кабанск, ул.8 марта, д. 16', 'ivanov@hw.loc', 1, 'img/users/3.jpg', '2022-02-21 07:21:10'),
+(4, 'petrov', '$2y$10$.a3D3ksgllG2a/1P97cBpOgFc5/DqmtZeEaR7Y2pt068E0MWLKeTi', 'Петров Петр Петрович', 'г.Нальчик, ул.Норильская 29-18', 'petrov@hw.loc', 1, 'img/users/4.jpeg', '2022-02-21 07:21:49'),
+(5, 'sidorov', '$2y$10$i5k3DnUG3ylApzZPdX1INukFfHM6fc6vAwOkBggIKMWSOfsG2DzYm', 'Сидоров Сидор Сидорович', 'Московская обл., г.Пушкино, ул.Колотушкина 67-19', 'sidorov@hw.loc', 1, 'img/users/5.jpg', '2022-02-21 07:22:11'),
+(6, 'dmitriev', '$2y$10$h3V9n69HNPrIEwGK8qxBsOCpJPbLoiY8LKG0sQKKiDXYvKSF8477C', 'Дмитриев Дмитрий Дмитриевич', 'г.Оренбург, ул.Н.Петрова 19', 'dmitriev@hw.loc', 1, 'img/users/6.jpg', '2022-02-21 07:22:31'),
+(7, 'jetsaus', '$2y$10$E9DtNBXlsIuK.AeJou5kJO0/SIKPFUqarLa55u5AjpQTrA3eB7l2u', 'Колбасин Сергей Петрович.', 'г.Улан-Удэ, ул.Павлова 76-37', 'jetsaus@hw.loc', 0, 'img/users/7.jpg', '2022-02-21 07:22:47'),
+(8, 'q', '$2y$10$8atbpxIDU4yxmuqUDCFhMOPmDJlTswruWBLPMGgu8WkGko2sAbAPq', 'Тестовый юзер', 'Тестовый юзер', 'luser@hw.ru', 1, 'img/users/8.jpg', '2022-02-21 08:04:01'),
+(9, 'z', '$2y$10$vacuKb4q6sDVFenz6FUob.5LHTH4vRlcLpdM01ZRo9b4RDs/jieJK', 'Тестовый админ', 'Кабинет админа', 'minda@hw.ru', 0, 'img/users/9.jpg', '2022-02-21 08:05:56');
 
 --
 -- Индексы сохранённых таблиц
@@ -279,7 +280,7 @@ ALTER TABLE `gallery_reviews`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` smallint(5) NOT NULL AUTO_INCREMENT COMMENT 'id пользователя', AUTO_INCREMENT=9;
+  MODIFY `id` smallint(5) NOT NULL AUTO_INCREMENT COMMENT 'id пользователя', AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
