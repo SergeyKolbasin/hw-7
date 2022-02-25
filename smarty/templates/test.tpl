@@ -4,6 +4,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
 </head>
 <body>
+<form action="../../test.php">
+<span>Логин: </span><input type="text" name="login" size="10" value="{$login}">
+<input type="submit" value="Отправить">
+<p>{$login}</p>
+</form>
+<!--
 <p>
     {if $name == 'JetSaus'}
         Переданная переменная - {$name}
@@ -11,5 +17,6 @@
         Другая переменная
     {/if}
 </p>
+-->
 </body>
 </html>

@@ -30,7 +30,7 @@ if ($login !== '' || $password !== ''|| $description !== '' || $address !== ''||
                         echo 'Возможная атака с помощью файловой загрузки';
                     }
                 } else {
-                    $uploadFile = '';
+                    $url = '';
                 }
                 if (insertUser($login, $password, $description, $address, $email, $role, $url)) {
                     echo 'Добавили юзера';
@@ -85,6 +85,6 @@ echo '<hr>';
     <input type="submit" value="Отправить">
 </form>
 <!-- Возврат из формы редактирования -->
-<a href="/gallery.php"><< В зоопарк</a><br>
+<a href="gallery.php"><< В зоопарк</a><br>
 <a href="index.php">На главную</a>
 </body>
