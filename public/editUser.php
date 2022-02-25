@@ -65,6 +65,7 @@ if ($password !== $user['password'] ||$description !== $user['description'] || $
     <title><?= $user['login'] ?></title>
 </head>
 <body>
+<?php mainMenu() ?>
 <p>Личный кабинет пользователя: <i><?= $user['description'] ?></i></p>
 <div class="container">
     <div class="img">
@@ -90,8 +91,5 @@ if ($password !== $user['password'] ||$description !== $user['description'] || $
     <span>Загрузить фото: </span><input type="file" name="userfile"><br><br>
     <input type="submit" value="Отправить">
 </form>
-<!-- Возврат из формы редактирования -->
-<a href="/gallery.php"><< В зоопарк</a><br>
-<a href="index.php">На главную</a>
 </body>
 </html>

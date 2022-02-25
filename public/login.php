@@ -21,7 +21,7 @@ if ($login && $password) {
         }
     } else {
         echo 'Неверная пара логин/пароль или вы не зарегистрированы!';
-        echo '<br>';
+        echo '<br><br>';
         echo '<a href="insertUser.php">Регистрация</a>';
     }
 } else {

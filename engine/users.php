@@ -31,19 +31,19 @@ function presentLogin($login): bool
     }
 }
 
-/** Функция определения имени файла для добавления фото нового юзера, имя файла = его ID в БД
+/** Функция определения ID нового юзера
  *
- * @return  string          Числовое имя фото, соответствует ID в БД
- *                          или '0', если произошла ошибка
+ * @return  string          ID нового юзера в БД
+ *                          или '', если произошла ошибка
  */
-function getPhotoName(): string
+function getID(): string
 {
     $sql = "SELECT `auto_increment` FROM information_schema.tables WHERE table_schema='" . DB_NAME . "' AND table_name='" . TABLE_USER . "'";
     $newID = getSingle($sql);
     if ($newID !== NULL) {
         return (string)$newID['auto_increment'];
     } else {
-        return '0';
+        return '';
     }
 }
 

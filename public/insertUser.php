@@ -16,12 +16,12 @@ if ($login !== '' || $password !== ''|| $description !== '' || $address !== ''||
     if (!presentLogin($login)) {
             // Если все данные юзера введены
             if ($login && $password && $description && $address && $email && ($role === '0' || $role === '1')) {
+                $userID = getID();                              // определим ID нового юзера
                 // Если выбран файл для загрузки
                 if (isset($_FILES['userfile']) && ($_FILES['userfile']['error']) !== UPLOAD_ERR_NO_FILE) {
-                    $photo = getPhotoName();            // определим имя файла фото
                     // Загружаем файл на сервер
                     $uploadDir = USERS_DIR;
-                    $uploadFile = getPhotoName() . getExtension($_FILES['userfile']['name']);
+                    $uploadFile = getID() . getExtension($_FILES['userfile']['name']); // имя файла соответствует его ID
                     $url = $uploadDir . $uploadFile;
                     // Переносим временный файл из временного каталога в хранилище
                     if (move_uploaded_file($_FILES['userfile']['tmp_name'], $url)) {
@@ -34,6 +34,7 @@ if ($login !== '' || $password !== ''|| $description !== '' || $address !== ''||
                 }
                 if (insertUser($login, $password, $description, $address, $email, $role, $url)) {
                     echo 'Добавили юзера';
+                    header('location: editUser.php?id=' . $userID);   // перенаправим юзера в его личный кабинет
                 } else {
                     echo 'Произошла ошибка' . '<br>';
                 }
