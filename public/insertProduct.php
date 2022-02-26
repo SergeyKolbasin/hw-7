@@ -15,7 +15,8 @@ $price = $_POST['price'] ?? '';                        // цена товара
                     if (isset($_FILES['userfile']) && ($_FILES['userfile']['error']) !== UPLOAD_ERR_NO_FILE) {
                         // Загружаем файл на сервер
                         $uploadDir = PRODUCT_DIR;
-                        $uploadFile = getProductName() . getExtension($_FILES['userfile']['name']);
+                        $uploadName = getProductName();
+                        $uploadFile = $uploadName . getExtension($_FILES['userfile']['name']);
                         $url = $uploadDir . $uploadFile;
                         $size = $_FILES['userfile']['size'];
                         // Переносим временный файл
@@ -24,6 +25,7 @@ $price = $_POST['price'] ?? '';                        // цена товара
                             // Добавляем товар в БД
                             if (insertProduct($name, $description, $price, $url, $size) == 1) {     // запросом д/б затронута только одна запись
                                 echo 'Товар добавлен' . '<br>';
+                                header("location: image.php?id=$uploadName");                       // в редактор товара
                             } else {
                                 echo 'Произошла ошибка' . '<br>';
                             }
