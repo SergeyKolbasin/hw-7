@@ -205,12 +205,12 @@ function insertProductBasket($id)
     $productid = $id;                       // идентификатор товара
     $db = createConnection();
     // Проверка наличия такого товара у такого юзера в корзине
-    $sql = "SELECT * FROM `baskets` WHERE `userid`=$userid AND `productid`=$productid";
+    $sql = "SELECT * FROM `basket` WHERE `userid`=$userid AND `productid`=$productid";
     if (getSingle($sql)!=NULL) {      // у пользователя уже есть такой товар в корзине
         $isPresent = 1;
         return false;
     } else {                            // такого товара нет, создание запроса на добавление в корзину
-        $sql = "INSERT INTO `baskets`(`userid`, `productid`, `amount`) VALUES ('$userid', '$productid', 1)";
+        $sql = "INSERT INTO `basket`(`userid`, `productid`, `amount`) VALUES ('$userid', '$productid', 1)";
     }
     // добавление в корзину
     if (execQuery($sql)!=false) {
@@ -228,7 +228,7 @@ function deleteBasketItem($id): bool
 {
     $db = createConnection();
     $id = (int)$id;
-    $sql = "DELETE FROM `baskets` WHERE `id`=$id";
+    $sql = "DELETE FROM `basket` WHERE `id`=$id";
     return execQuery($sql, $db);
 }
 
@@ -243,10 +243,10 @@ function getBasketItem($id, $userid)
     $db = createConnection();
     $id = (int)$id;
     // Выборка с именем юзера
-    $sql= "SELECT baskets.id, baskets.productid, gallery.name, gallery.url, gallery.price, baskets.amount, users.description
-	        FROM baskets
+    $sql= "SELECT basket.id, basket.productid, gallery.name, gallery.url, gallery.price, basket.amount, users.description
+	        FROM basket
     	        INNER JOIN users ON users.id=$userid
-    	        INNER JOIN gallery ON (baskets.productid=gallery.id) AND (baskets.id=$id)";
+    	        INNER JOIN gallery ON (basket.productid=gallery.id) AND (basket.id=$id)";
     return getSingle($sql);
 }
 
@@ -259,8 +259,8 @@ function insertBasketItem($id, $amount)
 {
     $db = createConnection();
     $id = (int)$id;
-    //$sql = "INSERT INTO `baskets.amount` VALUES $amount WHERE `id`=$id";
-    $sql = "UPDATE `baskets` SET `amount`='$amount' WHERE `id`=$id";
+    //$sql = "INSERT INTO `basket.amount` VALUES $amount WHERE `id`=$id";
+    $sql = "UPDATE `basket` SET `amount`='$amount' WHERE `id`=$id";
     // Изменение в корзине
     if (execQuery($sql)!=false) {
         return true;

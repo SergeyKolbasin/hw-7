@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `baskets`
+-- Структура таблицы `basket`
 --
 
-CREATE TABLE `baskets` (
+CREATE TABLE `basket` (
   `id` smallint(5) NOT NULL COMMENT 'id записи корзины',
   `userid` smallint(5) NOT NULL COMMENT 'id пользователя',
   `productid` smallint(5) NOT NULL COMMENT 'id продукта',
@@ -36,10 +36,10 @@ CREATE TABLE `baskets` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Корзина покупателя';
 
 --
--- Дамп данных таблицы `baskets`
+-- Дамп данных таблицы `basket`
 --
 
-INSERT INTO `baskets` (`id`, `userid`, `productid`, `amount`, `last_action`) VALUES
+INSERT INTO `basket` (`id`, `userid`, `productid`, `amount`, `last_action`) VALUES
 (3, 8, 9, 3, '2022-02-11 15:12:33'),
 (4, 7, 1, 1, '2022-02-04 15:20:36'),
 (13, 3, 13, 3, '2022-02-11 13:25:32'),
@@ -47,20 +47,6 @@ INSERT INTO `baskets` (`id`, `userid`, `productid`, `amount`, `last_action`) VAL
 (17, 3, 6, 2, '2022-02-11 13:48:27'),
 (18, 8, 1, 7, '2022-02-12 11:29:54'),
 (19, 8, 13, 1, '2022-02-11 15:17:09');
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `cart`
---
-
-CREATE TABLE `cart` (
-  `id` smallint(5) DEFAULT NULL COMMENT 'id покупки',
-  `id_product` smallint(5) NOT NULL COMMENT 'id товара',
-  `id_user` smallint(5) NOT NULL COMMENT 'id пользователя',
-  `quantity` smallint(5) NOT NULL COMMENT 'количество товара',
-  `last_action` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Корзина покупателя';
 
 -- --------------------------------------------------------
 
@@ -206,9 +192,9 @@ INSERT INTO `users` (`id`, `login`, `password`, `description`, `address`, `email
 --
 
 --
--- Индексы таблицы `baskets`
+-- Индексы таблицы `basket`
 --
-ALTER TABLE `baskets`
+ALTER TABLE `basket`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `userid` (`userid`,`productid`);
 
@@ -247,9 +233,9 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT для таблицы `baskets`
+-- AUTO_INCREMENT для таблицы `basket`
 --
-ALTER TABLE `baskets`
+ALTER TABLE `basket`
   MODIFY `id` smallint(5) NOT NULL AUTO_INCREMENT COMMENT 'id записи корзины', AUTO_INCREMENT=20;
 
 --
